@@ -1,8 +1,34 @@
-# React + Vite
+# Create Project Repository
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Install Tailwind CSS with Vite
 
-Currently, two official plugins are available:
+https://tailwindcss.com/docs/guides/vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Install DaisyUi as a Tailwind CSS plugin
+
+https://daisyui.com/docs/install/
+
+# install dependencies
+
+react router v6.22.2
+
+# remove boilerplates
+
+# Customize colors for light and dark theme
+
+<!-- Light theme: -->
+
+primary - #a3e635
+base-100: #e5e7eb
+
+<!-- Dark Theme: -->
+
+primary - #a3e635
+base-100: #6b7280
+
+# Font Pairing for Heading and Body Fonts
+
+Arvo - HeadingFont
+Lato - BodyFont
+
+## GitHub Commit- Project Setup
