@@ -11,6 +11,7 @@ https://daisyui.com/docs/install/
 # install dependencies
 
 react router v6.22.2
+react icons v5.0.1
 
 # remove boilerplates
 
@@ -33,4 +34,6 @@ Lato - BodyFont
 
 ## GitHub Commit- Project Setup
 
-# create browser router
+# Create Browser Router
+
+# Header

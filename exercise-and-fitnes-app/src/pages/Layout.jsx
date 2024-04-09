@@ -1,4 +1,10 @@
+import { Header } from '../components'
+
 const Layout = () => {
-  return <div>Layout</div>
+  return (
+    <>
+      <Header />
+    </>
+  )
 }
 export default Layout

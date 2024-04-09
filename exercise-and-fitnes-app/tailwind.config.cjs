@@ -9,13 +9,13 @@ export default {
     themes: [
       {
         lightTheme: {
-          primary: '#a3e635',
-          'base-100': '#e5e7eb',
+          primary: '#84cc16',
+          'base-100': '#f3f4f6',
         },
       },
       {
         darkTheme: {
-          primary: '#a3e635',
+          primary: '#84cc16',
           'base-100': '#6b7280',
         },
       },
