@@ -25,7 +25,7 @@ const SubLinks = () => {
   }
   return (
     <section
-      className="absolute right-0 top-[50px] transition-transform duration-300 origin-top"
+      className="absolute hidden lg:flex right-0 top-[90px] transition-transform duration-300 origin-top"
       style={{
         transform: pageOnHover ? 'rotateX(0deg)' : 'rotateX(-90deg)',
         right: page === 'about' ? '471px' : '0',

@@ -36,7 +36,7 @@ const NavLinks = () => {
           <li key={page}>
             <NavLink
               to={url}
-              className=" py-4 px-2 items-stretch hover:text-primary "
+              className=" grid py-4 px-2 items-stretch hover:text-primary "
               onMouseMove={() => {
                 showSubLinks(page)
               }}
