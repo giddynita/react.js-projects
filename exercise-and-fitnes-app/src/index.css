@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer base {
+  .active {
+    @apply text-primary;
+  }
   html {
     font-family: 'Lato', sans-serif;
   }
