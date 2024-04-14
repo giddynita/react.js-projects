@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import AboutSubLinks from './AboutSubLinks'
 import { useRef } from 'react'
 import { fitnessCalculator, subPage } from '../features/navbar/navbarSlice'
+import FeaturesSubPages from './FeaturesSubPages'
 
 const sublinks = {
   about: <AboutSubLinks />,
+  features: <FeaturesSubPages />,
 }
 
 const SubLinks = () => {
@@ -25,10 +27,11 @@ const SubLinks = () => {
   }
   return (
     <section
-      className="absolute hidden lg:flex right-0 top-[90px] transition-transform duration-300 origin-top"
+      className="absolute hidden lg:flex right-0  top-[90px] transition-transform duration-300 origin-top capitalize text-xs text-black/60"
       style={{
         transform: pageOnHover ? 'rotateX(0deg)' : 'rotateX(-90deg)',
         right: page === 'about' ? '471px' : '0',
+        left: page === 'about' ? ' ' : '0',
       }}
       ref={subLinkRef}
       onMouseLeave={hideSubLink}

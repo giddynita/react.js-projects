@@ -25,7 +25,7 @@ const AboutSubLinks = () => {
 
   return (
     <div className="relative">
-      <ul className=" capitalize text-xs border-t-2 border-primary w-40 shadow text-black/60 rounded-t-sm">
+      <ul className=" border-t-2 border-primary w-40 shadow  rounded-t-sm">
         {subpages.map((subpage, index) => {
           return (
             <li key={index}>

@@ -12,7 +12,7 @@ const SocialIcons = () => {
     <>
       {icons.map(({ icon, url, id }) => {
         return (
-          <li key={id} className="hover:text-primary">
+          <li key={id} className=" hover:text-primary">
             <a href={url}>{icon}</a>
           </li>
         )
