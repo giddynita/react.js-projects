@@ -5,9 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-  .active {
-    @apply text-primary;
-  }
   html {
     font-family: 'Lato', sans-serif;
   }
@@ -18,5 +15,39 @@
   h5,
   h6 {
     font-family: 'Arvo', serif;
+  }
+}
+@layer components {
+  .borderTop {
+    @apply shadow border-t-2 border-primary  rounded-t-sm;
+  }
+}
+@layer utilities {
+  .placeholder-italic::placeholder {
+    font-style: italic;
+    font-size: 0.75rem;
+  }
+
+  .transition-duration {
+    transition: all 0.3s;
+  }
+
+  .img:hover ~ .button {
+    background-color: #e879f9;
+  }
+}
+.active {
+  color: #84cc16;
+}
+
+@keyframes show {
+  0% {
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(1.03);
+  }
+  40% {
+    transform: scale(1);
   }
 }

@@ -5,14 +5,38 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fitnessCalculator } from '../features/navbar/navbarSlice'
 
 const subpages = [
-  'trainer',
-  'trainer single page',
-  'careers',
-  'pricing plans',
-  'fitness calculators',
-  'knowledge base',
-  'testimonials',
-  'gallery',
+  {
+    text: 'trainer',
+    url: 'trainer',
+  },
+  {
+    text: 'trainer single page',
+    url: 'trainer-single-page',
+  },
+  {
+    text: 'careers',
+    url: 'careers',
+  },
+  {
+    text: 'pricing plans',
+    url: 'pricing-plans',
+  },
+  {
+    text: 'fitness calculators',
+    url: 'fitness-calculators',
+  },
+  {
+    text: 'knowledge base',
+    url: 'knowledge-base',
+  },
+  {
+    text: 'testimonials',
+    url: 'testimonials',
+  },
+  {
+    text: 'gallery',
+    url: 'gallery',
+  },
 ]
 const AboutSubLinks = () => {
   const dispatch = useDispatch()
@@ -25,18 +49,19 @@ const AboutSubLinks = () => {
 
   return (
     <div className="relative">
-      <ul className=" border-t-2 border-primary w-40 shadow  rounded-t-sm">
-        {subpages.map((subpage, index) => {
+      <ul className=" borderTop w-40">
+        {subpages.map(({ text, url }, index) => {
           return (
             <li key={index}>
               <NavLink
-                className=" flex justify-between items-center pl-3 pr-0.5 h-[35px] border-b border-black/10 hover:bg-black/[0.02] hover:text-black/70"
+                to={url}
+                className=" flex justify-between items-center pl-3 pr-0.5 h-[35px] border-b border-accent/10 hover:bg-accent/[0.02] hover:text-accent/80"
                 onMouseOver={() => {
-                  showFitnessCalculators(subpage)
+                  showFitnessCalculators(text)
                 }}
               >
-                {subpage}
-                {subpage === 'fitness calculators' && (
+                {text}
+                {text === 'fitness calculators' && (
                   <MdArrowRight className="text-lg" />
                 )}
               </NavLink>

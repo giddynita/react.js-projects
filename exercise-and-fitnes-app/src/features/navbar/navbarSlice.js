@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const defaultState = {
   page: null,
   subpage: null,
+  searchBar: false,
+  workoutPlan: null,
 }
 
 const navbarSlice = createSlice({
@@ -17,9 +19,22 @@ const navbarSlice = createSlice({
       const { subpage } = action.payload
       state.subpage = subpage
     },
+    handleSearchBar: (state, action) => {
+      const { showHide } = action.payload
+      state.searchBar = showHide
+    },
+    handleWorkoutPlan: (state, action) => {
+      const { sex } = action.payload
+      state.workoutPlan = sex
+    },
   },
 })
 
-export const { subPage, fitnessCalculator } = navbarSlice.actions
+export const {
+  subPage,
+  fitnessCalculator,
+  handleSearchBar,
+  handleWorkoutPlan,
+} = navbarSlice.actions
 
 export default navbarSlice.reducer

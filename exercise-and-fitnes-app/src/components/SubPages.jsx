@@ -3,34 +3,42 @@ import AboutSubLinks from './AboutSubLinks'
 import { useRef } from 'react'
 import { fitnessCalculator, subPage } from '../features/navbar/navbarSlice'
 import FeaturesSubPages from './FeaturesSubPages'
+import ShopSubPages from './ShopSubPages'
+import WorkoutsSubPage from './WorkoutsSubPage'
+import ContactSubPage from './ContactSubPage'
+import BlogSubPage from './BlogSubPage'
 
-const sublinks = {
+const subpages = {
   about: <AboutSubLinks />,
   features: <FeaturesSubPages />,
+  shop: <ShopSubPages />,
+  workouts: <WorkoutsSubPage />,
+  blog: <BlogSubPage />,
+  contacts: <ContactSubPage />,
 }
 
-const SubLinks = () => {
+const SubPages = () => {
   const subLinkRef = useRef()
   const dispatch = useDispatch()
   const page = useSelector((state) => {
     return state.navbarState.page
   })
-  const pageOnHover = sublinks[page]
+  const pageOnHover = subpages[page]
   const hideSubLink = (event) => {
     const subLink = subLinkRef.current
     const { left, right, bottom } = subLink.getBoundingClientRect()
     const { clientX, clientY } = event
     if (clientX < left || clientX > right || clientY > bottom - 1) {
       dispatch(subPage({ page: null }))
-      dispatch(fitnessCalculator({ subpage: null }))
+      dispatch(fitnessCalculator({ subpage: [{}] }))
     }
   }
   return (
     <section
-      className="absolute hidden lg:flex right-0  top-[90px] transition-transform duration-300 origin-top capitalize text-xs text-black/60"
+      className="absolute hidden lg:flex right-0  top-[90px] transition-transform duration-300 origin-top capitalize text-xs text-accent/70"
       style={{
         transform: pageOnHover ? 'rotateX(0deg)' : 'rotateX(-90deg)',
-        right: page === 'about' ? '471px' : '0',
+        right: page === 'about' ? '450px' : '0',
         left: page === 'about' ? ' ' : '0',
       }}
       ref={subLinkRef}
@@ -40,4 +48,4 @@ const SubLinks = () => {
     </section>
   )
 }
-export default SubLinks
+export default SubPages

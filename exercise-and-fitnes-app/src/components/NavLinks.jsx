@@ -11,20 +11,20 @@ const navLinks = [
   { url: 'nutrition', page: 'nutrition' },
   { url: 'features', page: 'features' },
   { url: 'shop', page: 'shop' },
-  { url: 'news', page: 'news' },
+  { url: 'blog', page: 'blog' },
   { url: 'contacts', page: 'contacts' },
 ]
 const NavLinks = () => {
   const dispatch = useDispatch()
   const navLinkRef = useRef(null)
-  const showSubLinks = (page) => {
+  const showSubPages = (page) => {
     dispatch(subPage({ page }))
   }
   const hideNavLink = (event) => {
     const navLink = navLinkRef.current
-    const { top } = navLink.getBoundingClientRect()
-    const { clientY } = event
-    if (clientY < top) {
+    const { top, right } = navLink.getBoundingClientRect()
+    const { clientX, clientY } = event
+    if (clientY < top || clientX > right) {
       dispatch(subPage({ page: null }))
     }
   }
@@ -36,9 +36,9 @@ const NavLinks = () => {
           <li key={page}>
             <NavLink
               to={url}
-              className=" grid py-4 px-2 items-stretch hover:text-primary "
+              className=" grid items-center py-8 px-2 items-stretch hover:text-primary text-[0.85rem] "
               onMouseMove={() => {
-                showSubLinks(page)
+                showSubPages(page)
               }}
               ref={navLinkRef}
               onMouseLeave={hideNavLink}
