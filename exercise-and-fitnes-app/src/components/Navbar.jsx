@@ -30,10 +30,10 @@ const Navbar = () => {
           <div
             className="bg-white absolute -right-5 p-3 border border-accent/10 top-9 z-40 origin-center search"
             style={{
-              animation: searchBar && 'show 0.5s ease-out',
+              animation: searchBar && 'show 0.8s ease-out',
               opacity: searchBar ? '1' : '0',
               visibility: searchBar || 'hidden',
-              transition: 'all 0.5s',
+              transition: 'all 0.8s',
             }}
           >
             <SearchBar />
@@ -42,7 +42,7 @@ const Navbar = () => {
             <span
               className=" absolute border-[7px] border-transparent  border-b-white  z-50 top-[23px] origin-center "
               style={{
-                animation: searchBar && 'show 0.6s linear',
+                animation: searchBar && 'show 0.8s linear',
                 opacity: searchBar ? '1' : '0',
                 transition: 'all 0.6s',
               }}

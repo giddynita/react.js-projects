@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { MdArrowRight } from 'react-icons/md'
 const columns = [
   {
@@ -56,13 +56,13 @@ const FeaturesSubPages = () => {
               {column.map(({ text, url }, index) => {
                 return (
                   <li key={index}>
-                    <NavLink
+                    <Link
                       to={url}
-                      className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/70"
+                      className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80"
                     >
                       <MdArrowRight className="text-[1rem]" />
                       <span>{text}</span>
-                    </NavLink>
+                    </Link>
                   </li>
                 )
               })}

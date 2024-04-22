@@ -1,5 +1,5 @@
 import { MdArrowRight } from 'react-icons/md'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import FitnessCalculators from './FitnessCalculators'
 import { useDispatch, useSelector } from 'react-redux'
 import { fitnessCalculator } from '../features/navbar/navbarSlice'
@@ -53,7 +53,7 @@ const AboutSubLinks = () => {
         {subpages.map(({ text, url }, index) => {
           return (
             <li key={index}>
-              <NavLink
+              <Link
                 to={url}
                 className=" flex justify-between items-center pl-3 pr-0.5 h-[35px] border-b border-accent/10 hover:bg-accent/[0.02] hover:text-accent/80"
                 onMouseOver={() => {
@@ -64,7 +64,7 @@ const AboutSubLinks = () => {
                 {text === 'fitness calculators' && (
                   <MdArrowRight className="text-lg" />
                 )}
-              </NavLink>
+              </Link>
             </li>
           )
         })}

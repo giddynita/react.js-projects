@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import image from '../assets/images/img_1.png'
 import articleImage1 from '../assets/images/article1.png'
 import articleImage2 from '../assets/images/article2.png'
@@ -41,7 +41,7 @@ const BlogSubPage = () => {
       <div className="mb-3 grid grid-cols-4 place-items-center">
         {articles.map(({ image, title, date, desc, url }, index) => {
           return (
-            <NavLink to={url}>
+            <Link to={url}>
               <article key={index} className="w-52">
                 <figure>
                   <img src={image} alt={title} />
@@ -57,13 +57,13 @@ const BlogSubPage = () => {
                   Read More...
                 </p>
               </article>
-            </NavLink>
+            </Link>
           )
         })}
       </div>
-      <NavLink to="shop">
+      <figure>
         <img src={image} alt="shop" />
-      </NavLink>
+      </figure>
     </div>
   )
 }

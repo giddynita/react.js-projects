@@ -41,7 +41,7 @@ const Timetables = () => {
         {openHours.map(({ day, time }) => {
           return (
             <li
-              className="flex items-center justify-between py-2 hover:bg-accent/[0.02] hover:text-accent/60 border-t-[1px] border-accent/10 first:border-t-0
+              className="flex items-center justify-between py-2 hover:bg-accent/[0.02] hover:text-accent/80 border-t-[1px] border-accent/10 first:border-t-0 cursor-pointer
             "
             >
               <p className="flex items-center gap-x-2">

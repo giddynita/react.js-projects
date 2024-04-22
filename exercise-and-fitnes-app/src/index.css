@@ -44,10 +44,10 @@
   0% {
     transform: scale(0);
   }
-  20% {
+  30% {
     transform: scale(1.03);
   }
-  40% {
+  60% {
     transform: scale(1);
   }
 }

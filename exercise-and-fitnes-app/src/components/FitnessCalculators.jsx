@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const fitnessCalculators = [
   {
@@ -28,12 +28,12 @@ const FitnessCalculators = () => {
       {fitnessCalculators.map(({ text, url }, index) => {
         return (
           <li key={index}>
-            <NavLink
+            <Link
               to={url}
-              className="grid items-center h-[35px] pl-3 pr-0.5 border-t border-accent/10 hover:bg-accent/[0.02] hover:text-accent/70"
+              className="grid items-center h-[35px] pl-3 pr-0.5 border-t border-accent/10 hover:bg-accent/[0.02] hover:text-accent/80"
             >
               {text}
-            </NavLink>
+            </Link>
           </li>
         )
       })}

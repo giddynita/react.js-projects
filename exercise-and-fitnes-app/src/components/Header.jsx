@@ -1,7 +1,7 @@
 import SocialIcons from './SocialIcons'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { MdEmail } from 'react-icons/md'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 
 const Header = () => {
@@ -47,7 +47,7 @@ const Header = () => {
           <ul className="flex pt-[0.22rem] items-center gap-x-1 ">
             <SocialIcons />
           </ul>
-          <NavLink
+          <Link
             to="/cart"
             className=" flex items-center gap-x-3 hover:text-primary "
           >
@@ -59,7 +59,7 @@ const Header = () => {
               </span>
             </div>
             <p className="">$0.00</p>
-          </NavLink>
+          </Link>
         </div>
       </div>
     </header>
