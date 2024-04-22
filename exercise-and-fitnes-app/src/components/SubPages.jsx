@@ -38,7 +38,7 @@ const SubPages = () => {
       className="absolute hidden lg:flex right-0  top-[90px] transition-transform duration-300 origin-top capitalize text-xs text-accent/70"
       style={{
         transform: pageOnHover ? 'rotateX(0deg)' : 'rotateX(-90deg)',
-        right: page === 'about' ? '450px' : '0',
+        right: page === 'about' ? '398.5px' : '0',
         left: page === 'about' ? ' ' : '0',
       }}
       ref={subLinkRef}

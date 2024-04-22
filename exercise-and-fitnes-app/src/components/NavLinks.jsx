@@ -28,7 +28,6 @@ const NavLinks = () => {
       dispatch(subPage({ page: null }))
     }
   }
-
   return (
     <ul className="flex uppercase">
       {navLinks.map(({ url, page }) => {
@@ -36,12 +35,15 @@ const NavLinks = () => {
           <li key={page}>
             <NavLink
               to={url}
-              className=" grid items-center py-8 px-2 items-stretch hover:text-primary text-[0.85rem] "
+              className=" grid items-center py-8 px-2 items-stretch hover:text-primary text-[0.8rem]"
               onMouseMove={() => {
                 showSubPages(page)
               }}
               ref={navLinkRef}
               onMouseLeave={hideNavLink}
+              style={{
+                fontFamily: "'Exo 2', sans-serif",
+              }}
             >
               {page}
             </NavLink>

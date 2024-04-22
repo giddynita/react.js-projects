@@ -42,7 +42,7 @@ const BlogSubPage = () => {
         {articles.map(({ image, title, date, desc, url }, index) => {
           return (
             <NavLink to={url}>
-              <article key={index} className="w-56">
+              <article key={index} className="w-52">
                 <figure>
                   <img src={image} alt={title} />
                 </figure>
