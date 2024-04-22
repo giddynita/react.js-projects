@@ -38,7 +38,7 @@ const articles = [
 const BlogSubPage = () => {
   return (
     <div className="borderTop w-full p-6">
-      <div className="mb-6 grid grid-cols-4 place-items-center">
+      <div className="mb-3 grid grid-cols-4 place-items-center">
         {articles.map(({ image, title, date, desc, url }, index) => {
           return (
             <NavLink to={url}>

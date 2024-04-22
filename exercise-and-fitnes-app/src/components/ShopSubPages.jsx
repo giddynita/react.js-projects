@@ -58,7 +58,7 @@ const ShopSubPages = () => {
   return (
     <div className="borderTop w-full p-6">
       <div
-        className="mb-6"
+        className="mb-3"
         style={{
           columnCount: 5,
           columnRule: '1px solid #0000001a',
