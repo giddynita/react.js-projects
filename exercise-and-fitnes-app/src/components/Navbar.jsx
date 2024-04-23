@@ -24,30 +24,28 @@ const Navbar = () => {
         {/* SEARCH ICON */}
         <div className="relative search">
           <FaSearch
-            className="hover:text-primary cursor-pointer search"
+            className="hover:text-primary cursor-pointer text-xs search"
             onClick={handleSearchBarClick}
           />
           <div
-            className="bg-white absolute -right-5 p-3 border border-accent/10 top-9 z-40 origin-right search"
+            className="bg-white absolute -right-5 p-3 border border-accent/10 top-8 z-40 transform search"
             style={{
-              animation: searchBar && 'show 0.3s ease-out',
+              animation: searchBar && 'show 0.4s ease',
               opacity: searchBar ? '1' : '0',
               visibility: searchBar || 'hidden',
-              transition: 'all 0.3s',
+              transition: 'all ease 0.8s',
             }}
           >
             <SearchBar />
           </div>
-          {
-            <span
-              className=" absolute border-[9px] border-transparent border-b-white  z-50 top-[20px] origin-right "
-              style={{
-                animation: searchBar && 'show 0.3s linear',
-                opacity: searchBar ? '1' : '0',
-                transition: 'all 0.3s',
-              }}
-            ></span>
-          }
+          <span
+            className=" absolute border-[9px] border-transparent border-b-white  z-50 top-[16px] -left-[4px] origin-right "
+            style={{
+              animation: searchBar && 'show 0.4s ease',
+              opacity: searchBar ? '1' : '0',
+              transition: 'all ease 0.8s',
+            }}
+          ></span>
         </div>
       </div>
       {/* MENU BUTTON */}
