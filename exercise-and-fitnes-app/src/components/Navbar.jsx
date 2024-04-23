@@ -28,23 +28,23 @@ const Navbar = () => {
             onClick={handleSearchBarClick}
           />
           <div
-            className="bg-white absolute -right-5 p-3 border border-accent/10 top-9 z-40 origin-center search"
+            className="bg-white absolute -right-5 p-3 border border-accent/10 top-9 z-40 origin-right search"
             style={{
-              animation: searchBar && 'show 0.15s ease-out',
+              animation: searchBar && 'show 0.3s ease-out',
               opacity: searchBar ? '1' : '0',
               visibility: searchBar || 'hidden',
-              transition: 'all 0.15s',
+              transition: 'all 0.3s',
             }}
           >
             <SearchBar />
           </div>
           {
             <span
-              className=" absolute border-[7px] border-transparent  border-b-white  z-50 top-[23px] origin-center "
+              className=" absolute border-[9px] border-transparent border-b-white  z-50 top-[20px] origin-right "
               style={{
-                animation: searchBar && 'show 0.15s linear',
+                animation: searchBar && 'show 0.3s linear',
                 opacity: searchBar ? '1' : '0',
-                transition: 'all 0.15s',
+                transition: 'all 0.3s',
               }}
             ></span>
           }
