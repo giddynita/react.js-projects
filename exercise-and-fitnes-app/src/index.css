@@ -33,11 +33,11 @@
   }
 
   .img:hover ~ .button {
-    background-color: #e879f9;
+    background-color: #84cc16;
   }
 }
 .active {
-  color: #84cc16;
+  color: #e879f9;
 }
 
 @keyframes show {
