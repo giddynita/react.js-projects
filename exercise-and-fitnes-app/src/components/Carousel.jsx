@@ -36,12 +36,12 @@ const Carousel = () => {
       ref={slider}
       {...settings}
       className="slide-container w-full  border-b-[1px] border-accent/20"
-      style={{ height: 'calc(52vw + 100px)' }}
+      style={{ height: 'calc(52vw + (19.2 * 52vw / 100)' }}
     >
       {slides.map(({ slideBackground }) => {
         return (
           <div
-            className={`w-full ${slideBackground} bg-cover bg-center h-[52vw] md:h-[39vw] border-b-4 border-b-primary text-base-100 relative lg:h-[400px] slide`}
+            className={`w-full ${slideBackground} bg-cover bg-center h-[52vw] md:h-[39vw] border-b-4 border-b-primary text-base-100 relative lg:h-[406px] slide`}
           >
             <h3>Content</h3>
             <div className="absolute top-1/2 -translate-y-1/2 right-5 left-5 flex justify-between hidden slide-arrow">

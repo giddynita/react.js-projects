@@ -61,11 +61,11 @@
 }
 @media screen and (min-width: 768px) {
   .slide-container {
-    height: calc(39vw + 100px) !important;
+    height: calc(39vw + (19.2 * 39vw / 100)) !important;
   }
 }
 @media screen and (min-width: 1024px) {
   .slide-container {
-    height: 500px !important;
+    height: 498px !important;
   }
 }
