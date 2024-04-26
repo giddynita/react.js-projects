@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
-import { Header, Navbar, SubPages } from '../components'
+import { Header, Loading, Navbar, SubPages } from '../components'
 import { handleSearchBar } from '../features/navbar/navbarSlice'
+import { Outlet, useNavigation } from 'react-router-dom'
 
 const Layout = () => {
   const dispatch = useDispatch()
@@ -9,14 +10,23 @@ const Layout = () => {
       dispatch(handleSearchBar({ showHide: false }))
     }
   }
+  const navigation = useNavigation()
+  const isPageLoading = navigation.state === 'loading'
 
   return (
     <div onClick={handleSearchBarClick}>
       <Header />
-      <div className="relative w-[90%] mx-auto max-w-screen-lg">
+      <section className="relative w-[90%] mx-auto max-w-screen-lg">
         <Navbar />
         <SubPages />
-      </div>
+      </section>
+      {isPageLoading ? (
+        <Loading />
+      ) : (
+        <section>
+          <Outlet />
+        </section>
+      )}
     </div>
   )
 }

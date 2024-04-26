@@ -24,7 +24,7 @@ const fitnessCalculators = [
 ]
 const FitnessCalculators = () => {
   return (
-    <ul className="absolute top-[141px] left-full w-40 shadow">
+    <ul className="absolute top-[141px] left-full w-40 shadow bg-base-100">
       {fitnessCalculators.map(({ text, url }, index) => {
         return (
           <li key={index}>

@@ -21,6 +21,9 @@
   .borderTop {
     @apply shadow border-t-2 border-primary  rounded-t-sm;
   }
+  .slickArrow {
+    @apply p-3 hidden md:flex bg-accent/50 hover:bg-accent/70 rounded-md text-base-100;
+  }
 }
 @layer utilities {
   .placeholder-italic::placeholder {
@@ -34,6 +37,10 @@
 
   .img:hover ~ .button {
     background-color: #84cc16;
+  }
+
+  :is(.slide:hover) .slide-arrow {
+    display: flex;
   }
 }
 .active {
@@ -50,5 +57,15 @@
 
   80% {
     transform: scale(1);
+  }
+}
+@media screen and (min-width: 768px) {
+  .slide-container {
+    height: calc(39vw + 100px) !important;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .slide-container {
+    height: 500px !important;
   }
 }

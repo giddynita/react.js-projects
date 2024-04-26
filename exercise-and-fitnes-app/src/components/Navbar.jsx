@@ -18,7 +18,7 @@ const Navbar = () => {
     <nav className=" flex h-[90px] justify-between items-center ">
       {/* LOGO */}
       <h2>LOGO</h2>
-      <div className="hidden lg:flex items-center gap-x-2 text-accent/80 text-sm  font-semibold">
+      <div className="hidden lg:flex items-center gap-x-2 text-accent/80 text-sm  font-semibold ">
         {/* NAVLINKS */}
         <NavLinks />
         {/* SEARCH ICON */}

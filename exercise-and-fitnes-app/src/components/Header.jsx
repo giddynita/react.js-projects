@@ -6,8 +6,8 @@ import { FaShoppingCart } from 'react-icons/fa'
 
 const Header = () => {
   return (
-    <header className="py-2.5 border-b-[1px] border-accent/10">
-      <div className="hidden sm:flex w-[90%] max-w-screen-lg items-center justify-between  mx-auto text-accent/60">
+    <header className="hidden sm:flex py-2.5 border-b-[1px] border-accent/10">
+      <div className="flex w-[90%] max-w-screen-lg items-center justify-between  mx-auto text-accent/60">
         <div
           style={{
             columnCount: 2,
