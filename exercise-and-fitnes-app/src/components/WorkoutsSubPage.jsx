@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import WorkoutPlanMale from './WorkoutPlanMale'
 import WorkoutPlanFemale from './WorkoutPlanFemale'
 import { handleWorkoutPlan } from '../features/navbar/navbarSlice'
+import Heading from './Heading'
 
 const workoutPlans = {
   heading: 'workout plans',
@@ -52,7 +53,7 @@ const WorkoutsSubPage = () => {
     dispatch(handleWorkoutPlan({ sex }))
   }
   return (
-    <div className="borderTop w-full p-6 grid grid-cols-4">
+    <div className="borderTop w-full p-6 grid grid-cols-4 capitalize">
       <div className="mr-6">
         <h3 className="uppercase pb-4 text-accent/80 font-semibold">
           {workoutPlans.heading}
@@ -63,7 +64,7 @@ const WorkoutsSubPage = () => {
               <li key={index}>
                 <Link
                   to={url}
-                  className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80"
+                  className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80 "
                 >
                   <MdArrowRight className="text-[1rem]" />
                   <span>{text}</span>
@@ -112,9 +113,7 @@ const WorkoutsSubPage = () => {
         {sex === 'female' && <WorkoutPlanFemale />}
       </div>
       <div className="ml-6">
-        <h3 className="uppercase pb-4 text-accent/80 font-semibold">
-          {singleWorkouts.heading}
-        </h3>
+        <Heading text={singleWorkouts.heading} margin="mb-4" />
         <ul>
           {singleWorkouts.column.map(({ text, url }, index) => {
             return (

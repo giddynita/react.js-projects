@@ -18,7 +18,7 @@ const Navbar = () => {
     <nav className=" flex h-[90px] justify-between items-center ">
       {/* LOGO */}
       <h2>LOGO</h2>
-      <div className="hidden lg:flex items-center gap-x-2 text-accent/80 text-sm  font-semibold ">
+      <div className="hidden lg:flex items-center gap-x-2 text-accent/80 text-smfont-semibold ">
         {/* NAVLINKS */}
         <NavLinks />
         {/* SEARCH ICON */}
@@ -28,7 +28,7 @@ const Navbar = () => {
             onClick={handleSearchBarClick}
           />
           <div
-            className="bg-white absolute -right-5 p-3 border border-accent/10 top-8 z-40 transform search"
+            className="bg-white absolute -right-5 p-3 border border-accent/10 top-8 z-50 transform search "
             style={{
               animation: searchBar && 'show 0.4s ease',
               opacity: searchBar ? '1' : '0',
@@ -36,7 +36,7 @@ const Navbar = () => {
               transition: 'all ease 0.8s',
             }}
           >
-            <SearchBar />
+            <SearchBar width="w-72" placeholder="Search the site..." />
           </div>
           <span
             className=" absolute border-[9px] border-transparent border-b-white  z-50 top-[16px] -left-[4px] origin-right "

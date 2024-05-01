@@ -49,7 +49,7 @@ const AboutSubLinks = () => {
 
   return (
     <div className="relative">
-      <ul className=" borderTop w-40">
+      <ul className=" borderTop w-40 capitalize">
         {subpages.map(({ text, url }, index) => {
           return (
             <li key={index}>

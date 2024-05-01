@@ -42,6 +42,9 @@
   :is(.slide:hover) .slide-arrow {
     display: flex;
   }
+  .clip {
+    clip-path: polygon(0.5rem 0%, 0% 50%, 0.5rem 100%, 100% 100%, 100% 0%);
+  }
 }
 .active {
   color: #e879f9;

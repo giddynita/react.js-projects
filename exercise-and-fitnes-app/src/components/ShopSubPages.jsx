@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { MdArrowRight } from 'react-icons/md'
 import image from '../assets/images/img.png'
+import Heading from './Heading'
+import InformationColumn from './InformationSection'
 
 const columns = [
   {
@@ -46,10 +48,10 @@ const columns = [
   {
     heading: 'information',
     column: [
-      { text: 'about the shop', url: 'about-the-shop' },
-      { text: 'terms & conditions', url: 'terms-conditions' },
-      { text: 'privacy policy', url: 'privacy-policy' },
-      { text: 'delivery information', url: 'delivery-information' },
+      { text: 'About the Shop', url: 'about-the-shop' },
+      { text: 'Terms & Conditions', url: 'terms-conditions' },
+      { text: 'Privacy Policy', url: 'privacy-policy' },
+      { text: 'Delivery Information', url: 'delivery-information' },
       { text: 'F.A.Q.', url: 'f-a-q' },
     ],
   },
@@ -68,16 +70,14 @@ const ShopSubPages = () => {
         {columns.map(({ column, heading }, index) => {
           return (
             <div key={index}>
-              <h3 className="uppercase pb-4 font-semibold text-accent/80">
-                {heading}
-              </h3>
+              <Heading text={heading} margin="mb-4" />
               <ul>
                 {column.map(({ text, url }, index) => {
                   return (
                     <li key={index}>
                       <Link
                         to={url}
-                        className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80"
+                        className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80 capitalize"
                       >
                         <MdArrowRight className="text-[1rem]" />
                         <span>{text}</span>

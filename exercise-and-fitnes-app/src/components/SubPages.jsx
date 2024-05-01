@@ -35,7 +35,7 @@ const SubPages = () => {
   }
   return (
     <section
-      className="absolute hidden lg:flex right-0  top-[90px] transition-transform duration-300 origin-top capitalize text-xs text-accent/70 bg-base-100 z-50"
+      className="absolute hidden lg:flex right-0  top-[90px] transition-transform duration-300 origin-top  text-xs text-accent/70 bg-base-100 z-40"
       style={{
         transform: pageOnHover ? 'rotateX(0deg)' : 'rotateX(-90deg)',
         right: page === 'about' ? '400px' : '0',

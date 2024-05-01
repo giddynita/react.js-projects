@@ -1,4 +1,5 @@
 import { FaRegClock } from 'react-icons/fa6'
+import Heading from './Heading'
 
 const openHours = [
   {
@@ -34,14 +35,12 @@ const openHours = [
 const Timetables = () => {
   return (
     <section>
-      <h3 className="uppercase pb-4 font-semibold text-accent/80">
-        timetable / open hours
-      </h3>
+      <Heading text="open hours" margin="mb-4" />
       <ul>
         {openHours.map(({ day, time }) => {
           return (
             <li
-              className="flex items-center justify-between py-2 hover:bg-accent/[0.02] hover:text-accent/80 border-t-[1px] border-accent/10 first:border-t-0 cursor-pointer
+              className="flex items-center justify-between py-2 hover:bg-accent/[0.02] hover:text-accent/80 border-t-[1px] border-accent/10 first:border-t-0 cursor-pointer capitalize
             "
             >
               <p className="flex items-center gap-x-2">

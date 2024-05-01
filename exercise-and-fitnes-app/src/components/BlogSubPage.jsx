@@ -4,6 +4,7 @@ import articleImage1 from '../assets/images/article1.png'
 import articleImage2 from '../assets/images/article2.png'
 import articleImage3 from '../assets/images/article3.png'
 import articleImage4 from '../assets/images/article4.png'
+import Heading from './Heading'
 
 const articles = [
   {
@@ -43,13 +44,11 @@ const BlogSubPage = () => {
           return (
             <Link to={url}>
               <article key={index} className="w-52">
-                <figure>
+                <figure className="mb-3">
                   <img src={image} alt={title} />
                 </figure>
-                <h3 className="uppercase text-accent/80 mt-3 mb-0.5 font-bold ">
-                  {title}
-                </h3>
-                <time dateTime="" className="text-accent/50">
+                <Heading text={title} margin="mb-0.5" />
+                <time dateTime="" className="text-accent/50 mt-[-35px]">
                   {date}
                 </time>
                 <p className="py-2">{desc}</p>

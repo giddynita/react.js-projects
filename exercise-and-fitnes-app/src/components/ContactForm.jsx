@@ -4,6 +4,7 @@ import FormInput from './FormInput'
 import SubmitButton from './SubmitButton'
 import { FaPencilAlt } from 'react-icons/fa'
 import { RiAccountBoxFill } from 'react-icons/ri'
+import FormTextArea from './FormTextArea'
 
 const ContactForm = () => {
   return (
@@ -33,20 +34,17 @@ const ContactForm = () => {
         </div>
       </div>
       <div className="relative">
-        <textarea
-          className="block w-full p-3 pl-8 mt-4 mb-6 border border-base-300 focus:border-primary focus:outline-none rounded-md resize-none placeholder-italic "
+        <FormTextArea
           name="message"
           id="message"
           cols="30"
           rows="8"
           placeholder="Your question..."
-          required
         />
         <span className="absolute  top-3 left-3 text-accent/70">
           <FaPencilAlt className="w-4 h-4 " />
         </span>
       </div>
-
       <SubmitButton text="send question" />
     </Form>
   )
