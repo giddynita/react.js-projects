@@ -37,9 +37,10 @@ const Timetables = () => {
     <section>
       <Heading text="open hours" margin="mb-4" />
       <ul>
-        {openHours.map(({ day, time }) => {
+        {openHours.map(({ day, time }, index) => {
           return (
             <li
+              key={index}
               className="flex items-center justify-between py-2 hover:bg-accent/[0.02] hover:text-accent/80 border-t-[1px] border-accent/10 first:border-t-0 cursor-pointer capitalize
             "
             >

@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { formatPrice } from '../utils'
+import { handlePriceFilter } from '../features/products/productsFiltersSlice'
 
-const Range = ({ label, name, size, price }) => {
-  const step = 10000
+const Range = ({ label, name }) => {
+  const selectedPrice = useSelector((state) => state.productState.price)
+  const dispatch = useDispatch()
+  const handlePriceChange = (price) => {
+    dispatch(handlePriceFilter({ price }))
+  }
+  const step = 5000
   const maxPrice = 100000
-  const [selectedPrice, setSelectedPrice] = useState(price || maxPrice)
   return (
     <div className="form-control">
       <label
         htmlFor={name}
-        className="flex justify-between text-accent/60 font-bold mb-2"
+        className="flex justify-between text-accent/50 font-bold mb-3 text-xs"
       >
         <span className="font-semibold text-md">min:{formatPrice(0)}</span>
         <span className="font-semibold text-md">
@@ -21,23 +26,24 @@ const Range = ({ label, name, size, price }) => {
         name={name}
         min={0}
         max={maxPrice}
-        value={selectedPrice}
+        value={selectedPrice || maxPrice}
         onChange={(e) => {
-          setSelectedPrice(e.target.value)
+          handlePriceChange(e.target.value)
         }}
         step={step}
         className={`range range-primary range-md`}
       />
-      <div className="w-full flex items-center  text-sm  mt-2 text-accent/60 font-semibold gap-x-1.5">
-        <span className="capitalize">{label}:</span>
-        <span className="text-primary">{formatPrice(selectedPrice)}</span>
-      </div>
-      <button
-        type="button"
-        className=" text-sm text-white bg-primary py-2 px-4 rounded-md mt-4 tracking-wider hover:bg-secondary"
+      <div
+        className="w-full flex items-center  text-xs  mt-3 text-accent/50 font-semibold gap-x-1.5"
+        style={{
+          display: selectedPrice == 0 ? 'none' : 'flex',
+        }}
       >
-        Filter
-      </button>
+        <span className="capitalize">{label} range: </span>
+        <span>
+          {formatPrice(0)} - {formatPrice(selectedPrice)}
+        </span>
+      </div>
     </div>
   )
 }

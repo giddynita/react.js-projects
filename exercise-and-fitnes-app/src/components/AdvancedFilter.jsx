@@ -6,8 +6,9 @@ import ProductBrandSection from './ProductBrandSection'
 import Select from './Select'
 import TopRatedProductSection from './TopRatedProductSection'
 import ProductCategoriesSection from './ProductCategoriesSection'
+import paymentIcon from '../assets/images/payment-icons.png'
 
-const AdvancedFilter = ({ products }) => {
+const AdvancedFilter = () => {
   return (
     <div className=" w-full text-sm">
       <section className="mb-6">
@@ -19,21 +20,21 @@ const AdvancedFilter = ({ products }) => {
         />
       </section>
       <section className="mb-6">
-        <ProductCategoriesSection products={products} />
+        <ProductCategoriesSection />
       </section>
       <section className="mb-6">
         <Heading text="top rated products" margin="mb-3 " />
-        <TopRatedProductSection products={products} />
+        <TopRatedProductSection />
       </section>
       <section className="mb-6">
-        <Heading text="filter by" margin="mb-3" />
+        <Heading text="filter by color" margin="mb-3" />
         <Select
           name="color"
           list={['Any Color', 'Red', 'Blue', 'Black', 'White']}
         />
       </section>
       <section className="mb-6">
-        <Heading text="filter by price" margin="mb-3" size="text-sm" />
+        <Heading text="filter by price" margin="mb-3" />
         <Range name="price" label="price" />
       </section>
       <section className="mb-6 text-xs">
@@ -41,6 +42,9 @@ const AdvancedFilter = ({ products }) => {
       </section>
       <section className="mb-6 text-xs">
         <InformationSection />
+      </section>
+      <section>
+        <img src={paymentIcon} alt="payment-icons" />
       </section>
     </div>
   )

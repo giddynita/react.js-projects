@@ -45,6 +45,10 @@
   .clip {
     clip-path: polygon(0.5rem 0%, 0% 50%, 0.5rem 100%, 100% 100%, 100% 0%);
   }
+  .background-clip {
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
 }
 .active {
   color: #e879f9;

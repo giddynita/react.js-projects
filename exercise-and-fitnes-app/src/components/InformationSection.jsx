@@ -22,7 +22,7 @@ const InformationSection = () => {
             <li key={index}>
               <Link
                 to={url}
-                className="flex items-center py-1.5 text-accent/70 hover:bg-accent/[0.02] hover:text-accent/80 text-primary w-2/3"
+                className="flex items-center py-1.5 text-accent/70  hover:text-secondary text-primary w-max"
               >
                 <MdArrowRight className="text-[1rem] text-accent/80" />
                 <span>{text}</span>

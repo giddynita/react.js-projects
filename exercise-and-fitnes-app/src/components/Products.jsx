@@ -1,6 +1,7 @@
-import { formatPrice } from '../utils'
+import { formatDiscountPrice, formatPrice } from '../utils'
 import { TiStarFullOutline } from 'react-icons/ti'
 import Heading from './Heading'
+import { useSelector } from 'react-redux'
 
 const ratings = [
   <TiStarFullOutline />,
@@ -10,42 +11,72 @@ const ratings = [
   <TiStarFullOutline />,
 ]
 
-const Products = ({ products }) => {
+const Products = () => {
+  const products = useSelector((state) => {
+    return state.productState.productsList
+  })
   return (
     <div className="py-8 grid grid-cols-2 md:grid-cols-3 gap-8">
       {products.map(
         (
-          { productImage, productName, productRatings, productPrice },
+          {
+            productImage,
+            productName,
+            productRatings,
+            productPrice,
+            sale,
+            discount,
+          },
           index
         ) => {
           const dollarsAmount = formatPrice(productPrice)
-          const rating = ratings.filter((rating, index) => {
-            const filtered = index < productRatings
-            if (filtered) {
-              return rating
-            }
-          })
-
+          const discountPrice = formatDiscountPrice(productPrice, discount)
           return (
-            <div key={index} className="shadow rounded-md bg">
+            <div
+              key={index}
+              className="shadow rounded-md relative overflow-hidden h-max"
+            >
               <figure className="p-2">
                 <img src={productImage} alt={productName} />
               </figure>
               <div className="text-center  rounded-b-md bg-white pb-5 pt-3">
                 <Heading text={productName} />
-                <div className="flex items-center justify-center text-yellow-500">
-                  {rating.map((item, index) => {
-                    return <h5 key={index}>{item}</h5>
-                  })}
+                <div className="flex items-center justify-center w-max mx-auto  text-accent/30 background-clip">
+                  {productRatings &&
+                    ratings.map((item, index) => {
+                      const rating =
+                        index < productRatings ? 'text-yellow-500' : ''
+                      return (
+                        <h5 key={index} className={rating}>
+                          {item}
+                        </h5>
+                      )
+                    })}
                 </div>
-                <p className="text-primary my-2">{dollarsAmount}</p>
+                <p className="text-primary my-2 text-[0.8rem]">
+                  {sale ? (
+                    <>
+                      <span className="line-through text-accent/30 mr-1">
+                        {dollarsAmount}
+                      </span>
+                      {discountPrice}
+                    </>
+                  ) : (
+                    <>{dollarsAmount} </>
+                  )}
+                </p>
                 <button
                   type="button"
-                  className="btn rounded-md uppercase text-xs text-white bg-primary hover:bg-secondary"
+                  className="font-semibold rounded-md uppercase text-[0.65rem] text-white bg-primary hover:bg-secondary py-2.5 px-3"
                 >
                   add to cart
                 </button>
               </div>
+              {sale && (
+                <span className="absolute top-3 -right-6 bg-primary text-white uppercase text-xs rotate-45 w-24 text-center py-0.5 pl-0.5">
+                  sale!
+                </span>
+              )}
             </div>
           )
         }

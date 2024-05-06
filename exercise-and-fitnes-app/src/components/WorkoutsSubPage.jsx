@@ -55,9 +55,7 @@ const WorkoutsSubPage = () => {
   return (
     <div className="borderTop w-full p-6 grid grid-cols-4 capitalize">
       <div className="mr-6">
-        <h3 className="uppercase pb-4 text-accent/80 font-semibold">
-          {workoutPlans.heading}
-        </h3>
+        <Heading text={workoutPlans.heading} margin="pb-4" />
         <ul>
           {workoutPlans.column.map(({ text, url }, index) => {
             return (
@@ -75,9 +73,7 @@ const WorkoutsSubPage = () => {
         </ul>
       </div>
       <div className="text-center col-span-2 border-r-[1px] border-l-[1px] border-r-black/20 border-l-black/20">
-        <h3 className="uppercase pb-4 text-accent/80 font-semibold">
-          {findYourWorkoutPlan.heading}
-        </h3>
+        <Heading text={findYourWorkoutPlan.heading} margin="pb-4" />
         {sex ? (
           ''
         ) : (

@@ -42,7 +42,7 @@ const BlogSubPage = () => {
       <div className="mb-3 grid grid-cols-4 place-items-center">
         {articles.map(({ image, title, date, desc, url }, index) => {
           return (
-            <Link to={url}>
+            <Link to={url} key={index}>
               <article key={index} className="w-52">
                 <figure className="mb-3">
                   <img src={image} alt={title} />
