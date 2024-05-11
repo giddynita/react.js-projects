@@ -1,7 +1,8 @@
-import { formatDiscountPrice, formatPrice } from '../utils'
+import { formatPrice } from '../utils'
 import { TiStarFullOutline } from 'react-icons/ti'
 import Heading from './Heading'
 import { useSelector } from 'react-redux'
+import { products } from '../data'
 
 const ratings = [
   <TiStarFullOutline />,
@@ -11,13 +12,10 @@ const ratings = [
   <TiStarFullOutline />,
 ]
 
-const Products = () => {
-  const products = useSelector((state) => {
-    return state.productState.productsList
-  })
+const Products = ({ paginatedAndFilteredProducts }) => {
   return (
     <div className="py-8 grid grid-cols-2 md:grid-cols-3 gap-8">
-      {products.map(
+      {paginatedAndFilteredProducts.map(
         (
           {
             productImage,
@@ -25,12 +23,12 @@ const Products = () => {
             productRatings,
             productPrice,
             sale,
-            discount,
+            discountPrice,
           },
           index
         ) => {
-          const dollarsAmount = formatPrice(productPrice)
-          const discountPrice = formatDiscountPrice(productPrice, discount)
+          const productAmount = formatPrice(productPrice)
+          const discountAmount = formatPrice(discountPrice)
           return (
             <div
               key={index}
@@ -57,12 +55,12 @@ const Products = () => {
                   {sale ? (
                     <>
                       <span className="line-through text-accent/30 mr-1">
-                        {dollarsAmount}
+                        {productAmount}
                       </span>
-                      {discountPrice}
+                      {discountAmount}
                     </>
                   ) : (
-                    <>{dollarsAmount} </>
+                    <>{productAmount} </>
                   )}
                 </p>
                 <button

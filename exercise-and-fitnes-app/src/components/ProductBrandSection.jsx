@@ -17,18 +17,24 @@ const ProductBrandSection = () => {
     dispatch(handleProductsBrandsFilter({ brand }))
   }
   const brandState = useSelector((state) => state.productState.brand)
+  const blank = ''
   return (
     <>
       <Heading text="product brands" margin="mb-3" />
       <ul className="flex flex-row flex-wrap gap-1.5 text-white">
         {tags.map((tag, index) => {
-          const background = tag === brandState ? 'bg-secondary' : ''
+          const background =
+            tag === brandState
+              ? 'bg-secondary hover:bg-secondary scale-[1.03]'
+              : 'bg-primary hover:bg-primary'
           return (
             <li
               key={index}
-              className={`relative bg-primary flex items-center pb-0.5 pt-0.5 pr-3 gap-x-0.5 pl-1.5 clip rounded-r-md cursor-pointer hover:bg-secondary ${background}`}
+              className={`relative bg-primary flex items-center pb-0.5 pt-0.5 pr-3 gap-x-0.5 pl-1.5 clip rounded-r-md cursor-pointer hover:scale-[1.03] ${background}`}
               onClick={() => {
-                handleBrandFilter(tag)
+                tag === brandState
+                  ? handleBrandFilter(blank)
+                  : handleBrandFilter(tag)
               }}
             >
               <GoDotFill className="text-[0.4rem]" />

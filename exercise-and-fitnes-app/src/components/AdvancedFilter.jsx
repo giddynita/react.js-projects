@@ -10,7 +10,7 @@ import paymentIcon from '../assets/images/payment-icons.png'
 
 const AdvancedFilter = () => {
   return (
-    <div className=" w-full text-sm">
+    <div className=" w-full text-sm mb-10">
       <section className="mb-6">
         <Heading text="search" margin="mb-3" />
         <SearchBar

@@ -1,14 +1,12 @@
 import { useSelector } from 'react-redux'
 import { formatPrice } from '../utils'
 import { TiStarFullOutline } from 'react-icons/ti'
+import { products } from '../data'
 
 const TopRatedProductSection = () => {
-  const totalProducts = useSelector((state) => {
-    return state.productState.totalProducts
-  })
   return (
     <div>
-      {totalProducts
+      {products
         .filter((product, index) => product.topRated === true && index < 3)
         .map(({ productName, productPrice, productImage }, index) => {
           return (
