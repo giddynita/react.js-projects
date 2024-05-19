@@ -41,9 +41,9 @@ const Navbar = () => {
           <span
             className=" absolute border-[9px] border-transparent border-b-white  z-50 top-[16px] -left-[4px] origin-right "
             style={{
-              animation: searchBar && 'show 0.4s ease',
+              animation: searchBar && 'show 0.5s ease',
               opacity: searchBar ? '1' : '0',
-              transition: 'all ease 0.8s',
+              transition: 'all ease 1s',
             }}
           ></span>
         </div>

@@ -1,7 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { About, Error, Home, Layout, Shop } from './pages'
+import { About, Error, Home, Layout, Shop, SingleProduct } from './pages'
 import { ErrorElement } from './components'
-
+// loaders
+import { loader as singleProductLoader } from './pages/SingleProduct'
+import { action as reviewAction } from './components/ReviewTab'
+import { store } from './store'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -22,6 +25,13 @@ const router = createBrowserRouter([
         path: 'shop',
         element: <Shop />,
         errorElement: <ErrorElement />,
+      },
+      {
+        path: 'shop/products/:productId',
+        element: <SingleProduct />,
+        errorElement: <ErrorElement />,
+        loader: singleProductLoader,
+        action: reviewAction(store),
       },
     ],
   },

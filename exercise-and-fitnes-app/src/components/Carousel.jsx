@@ -10,9 +10,6 @@ const slides = [
   {
     slideBackground: "bg-[url('./assets/images/shop_bg2.JPG')]",
   },
-  {
-    slideBackground: "bg-[url('./assets/images/shop_bg3.JPG')]",
-  },
 ]
 
 const Carousel = () => {

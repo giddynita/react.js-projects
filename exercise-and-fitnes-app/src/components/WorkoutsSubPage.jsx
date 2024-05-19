@@ -92,7 +92,7 @@ const WorkoutsSubPage = () => {
                     />
                     <button
                       type="button"
-                      className="absolute  bottom-4 left-1/2 -translate-x-1/2 w-32 py-2 bg-primary text-white uppercase text-xs hover:bg-secondary rounded-sm button"
+                      className="absolute bottom-4 left-1/2 -translate-x-1/2 w-32 py-2  bg-primary text-white uppercase hover:bg-secondary rounded-sm"
                       onClick={() => {
                         handleSpecificWorkout(type)
                       }}

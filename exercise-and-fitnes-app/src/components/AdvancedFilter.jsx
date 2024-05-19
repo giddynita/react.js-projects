@@ -24,7 +24,7 @@ const AdvancedFilter = () => {
       </section>
       <section className="mb-6">
         <Heading text="top rated products" margin="mb-3 " />
-        <TopRatedProductSection />
+        <TopRatedProductSection total={3} />
       </section>
       <section className="mb-6">
         <Heading text="filter by color" margin="mb-3" />

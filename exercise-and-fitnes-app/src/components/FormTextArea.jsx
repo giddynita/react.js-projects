@@ -1,7 +1,7 @@
-const FormTextArea = ({ name, id, cols, rows, placeholder }) => {
+const FormTextArea = ({ name, id, cols, rows, placeholder, margin }) => {
   return (
     <textarea
-      className="block w-full p-3 pl-8 mt-4 mb-6 border border-base-300 focus:border-primary focus:outline-none rounded-md resize-none placeholder-italic "
+      className={`block w-full px-2.5 py-1 border border-base-300 focus:border-primary focus:outline-none rounded-md resize-none placeholder-italic ${margin}`}
       name={name}
       id={id}
       cols={cols}

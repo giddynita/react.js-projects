@@ -22,7 +22,7 @@ const Shop = () => {
   const searchAndPriceFilteredWithColor = searchAndPriceFiltered.filter(
     (product) =>
       colorType && colorType !== 'Any Color'
-        ? product.productColor === colorType
+        ? product.productColor.includes(colorType)
         : searchAndPriceFiltered
   )
   const searchAndPriceFilteredWithColorAndBrand = brand

@@ -1,8 +1,6 @@
-const Heading = ({ text, margin }) => {
+const Heading = ({ text, margin, size }) => {
   return (
-    <h3
-      className={`uppercase ${margin} text-[0.8rem] font-semibold text-accent/80`}
-    >
+    <h3 className={`uppercase ${margin} ${size} font-semibold text-accent/80`}>
       {text}
     </h3>
   )

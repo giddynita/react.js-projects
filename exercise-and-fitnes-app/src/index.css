@@ -24,6 +24,9 @@
   .slickArrow {
     @apply p-3 hidden md:flex bg-accent/50 hover:bg-accent/70 rounded-md text-base-100;
   }
+  .width {
+    @apply w-[90%] mx-auto max-w-screen-lg;
+  }
 }
 @layer utilities {
   .placeholder-italic::placeholder {

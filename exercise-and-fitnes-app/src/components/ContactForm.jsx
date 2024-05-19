@@ -8,7 +8,7 @@ import FormTextArea from './FormTextArea'
 
 const ContactForm = () => {
   return (
-    <Form>
+    <Form method="POST" onSubmit={(e) => e.target.reset()}>
       <div className="flex justify-between gap-x-2">
         <div className="w-1/2 relative ">
           <FormInput
@@ -40,6 +40,7 @@ const ContactForm = () => {
           cols="30"
           rows="8"
           placeholder="Your question..."
+          margin="mt-4 mb-6 pl-8"
         />
         <span className="absolute  top-3 left-3 text-accent/70">
           <FaPencilAlt className="w-4 h-4 " />
