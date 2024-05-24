@@ -1,4 +1,3 @@
-import { formatPrice } from '../utils'
 import Heading from './Heading'
 import { Link } from 'react-router-dom'
 import Rating from './Rating'

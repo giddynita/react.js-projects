@@ -5,7 +5,7 @@ import product_1 from './assets/images/shop-product-1.png'
 export const products = [
   {
     productImage: product_1,
-    productName: 'shester bench',
+    productName: 'Shester Bench',
     productRatings: 3,
     productPrice: 20000,
     category: 'equipment',

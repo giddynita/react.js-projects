@@ -5,6 +5,7 @@ import { MdArrowRight } from 'react-icons/md'
 import { Link, useLoaderData } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 const ProductDetails = ({}) => {
   const { singleProduct } = useLoaderData()
@@ -21,6 +22,14 @@ const ProductDetails = ({}) => {
   } = singleProduct
   const reviews = useSelector((state) => state.productDetailsState.reviews)
   const [selectedColor, setSelectedColor] = useState(productColor[0])
+  const [selectedAmount, setSelectedAmount] = useState(0)
+  const addToCart = () => {
+    selectedAmount > 1
+      ? toast.success(
+          `${selectedAmount} x ${productName} have been added to your cart`
+        )
+      : toast.success(`${productName} has been added to your cart`)
+  }
   return (
     <div className="grid sm:grid-cols-2 gap-5 sm:flex-row">
       <figure className="bg-gray-100/50 h-max flex ">
@@ -47,6 +56,9 @@ const ProductDetails = ({}) => {
                 className="w-32 sm:w-24 border rounded-md
            focus:outline-none h-8 px-2 text-accent/60 text-sm"
                 min={1}
+                onChange={(e) => {
+                  setSelectedAmount(e.target.value)
+                }}
               />
             </div>
             <div className="flex items-center gap-x-1.5 ">
@@ -58,9 +70,10 @@ const ProductDetails = ({}) => {
                     type="button"
                     name="colors"
                     id="colors"
+                    value={selectedColor}
                     className={`w-5 h-5 border rounded-full cursor-pointer ${
                       color === selectedColor && 'border-2 border-gray-400'
-                    }`}
+                    } text-transparent`}
                     style={{
                       backgroundColor: color,
                     }}
@@ -73,8 +86,9 @@ const ProductDetails = ({}) => {
             </div>
           </div>
           <button
-            type="button"
+            type="submit"
             className="col-span-2 uppercase text-white bg-primary hover:bg-secondary flex items-center justify-center gap-x-1.5 text-xs rounded-md w-full h-10 font-semibold"
+            onClick={selectedAmount && addToCart}
           >
             <FaShoppingCart /> add to cart
           </button>

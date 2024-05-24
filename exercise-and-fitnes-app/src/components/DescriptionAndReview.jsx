@@ -10,7 +10,7 @@ const DescriptionAndReview = () => {
   const dispatch = useDispatch()
   return (
     <div>
-      <div className="flex items-end ">
+      <div className="flex flex-col w-full sm:items-end sm:flex-row text-start">
         {buttonType.map((button, index) => {
           const activeStyle =
             active === button
@@ -21,14 +21,14 @@ const DescriptionAndReview = () => {
             <button
               key={index}
               type="button"
-              className={`w-36 text-sm capitalize ${activeStyle} `}
+              className={`w-full sm:w-36 text-sm capitalize ${activeStyle} `}
               onClick={() => dispatch(handleActiveState({ setActive: button }))}
             >
               {button}
             </button>
           )
         })}
-        <span className="border-b  flex-1"> </span>
+        <span className="border-b   sm:flex-1"> </span>
       </div>
       <div className="border-[1px] border-accent/10 p-8 pb-6 relative z-30 border-t-transparent">
         {active === 'description' && <DescriptionTab />}

@@ -1,13 +1,13 @@
 import { useLoaderData } from 'react-router-dom'
 import Heading from './Heading'
 import Rating from './Rating'
-import reviewImage from '../assets/images/review-img.png'
 import { toast } from 'react-toastify'
 import { handleReviews } from '../features/product_details/productDetailsSlice'
 import ReviewForm from './ReviewForm'
 import { useSelector } from 'react-redux'
 import day from 'dayjs'
 import { BsDash } from 'react-icons/bs'
+import { FaUser } from 'react-icons/fa6'
 
 export const action =
   (store) =>
@@ -20,6 +20,7 @@ export const action =
       toast.success('Review submitted successfully')
     } catch (error) {
       console.log(error)
+      toast.error('error')
     }
 
     return null
@@ -54,13 +55,10 @@ const ReviewTab = () => {
             key={index}
             className="flex flex-start gap-3 border-y-[1px] py-3 border-accent/10"
           >
-            <figure>
-              <img
-                src={reviewImage}
-                alt="name"
-                className="w-10 h-10 rounded-full"
-              />
-            </figure>
+            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 text-gray-600">
+              <FaUser />
+            </div>
+
             <div className="flex-1">
               <div className="text-primary flex justify-between mb-1 text-sm">
                 <p className="flex items-center gap-0.5">

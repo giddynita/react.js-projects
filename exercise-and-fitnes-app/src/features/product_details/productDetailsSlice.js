@@ -2,7 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const defaultState = {
   active: 'description',
-  reviews: [],
+  reviews: [
+    {
+      name: 'Gideon Onita',
+      email: 'onita@gmail.com',
+      review:
+        ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum odio ea qui, quidem magnam ut, asperiores voluptatem repellat cupiditate odit maiores tenetur vero ducimus ipsa itaque iste aliquam, in a.',
+    },
+  ],
 }
 
 const productDetailsSlice = createSlice({

@@ -1,4 +1,4 @@
-import { Form, Link, useLoaderData } from 'react-router-dom'
+import { Form, Link, useLoaderData, useNavigation } from 'react-router-dom'
 import FormTextArea from './FormTextArea'
 import FormInput from './FormInput'
 import SubmitButton from './SubmitButton'
@@ -6,6 +6,7 @@ import SubmitButton from './SubmitButton'
 const ReviewForm = () => {
   const { singleProduct } = useLoaderData()
   const { productId } = singleProduct
+  const navigation = useNavigation()
   return (
     <div className="text-sm text-accent/80 py-6">
       <p>Add a review</p>
@@ -81,10 +82,12 @@ const ReviewForm = () => {
           </div>
         </div>
         <div className="grid grid-cols-6">
-          <div className="col-start-2">
-            <Link to={`/shop/products/${productId}`}>
-              <SubmitButton text="submit" />
-            </Link>
+          <div className="col-start-2 w-max ">
+            <SubmitButton
+              text="submit"
+              texting="submitting"
+              navigation={navigation}
+            />
           </div>
         </div>
       </Form>
