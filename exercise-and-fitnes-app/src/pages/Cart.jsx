@@ -1,7 +1,14 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { Button, CartList, CartTotal } from '../components'
 import Heading from '../components/Heading'
+import { clearCart } from '../features/cart/cartSlice'
 
 const Cart = () => {
+  const dispatch = useDispatch()
+  const { numItemsInCart } = useSelector((state) => state.cartState)
+  const clear = () => {
+    dispatch(clearCart())
+  }
   return (
     <>
       <section className="bg-[url('./assets/images/shop_product_details.JPG')] h-[23vw] max-h-[180px] w-full bg-cover bg-center text-white flex justify-center flex-col ">
@@ -13,18 +20,27 @@ const Cart = () => {
         </div>
       </section>
       <div className="my-12">
-        <section className="width mb-10">
+        <section className="width mb-10 relative">
           <CartList />
-        </section>
-        <section className="width">
-          <Heading text="cart totals" margin="mb-3" size="text-sm" />
-          <CartTotal />
-          <Button
+          <button
             type="button"
-            customStyles="text-sm rounded h-10 w-52 my-4"
-            text="proceed to checkout"
-          />
+            className="absolute -top-6 right-0 capitalize hover:underline text-secondary text-sm cursor-pointer"
+            onClick={clear}
+          >
+            clear cart
+          </button>
         </section>
+        {numItemsInCart === 0 || (
+          <section className="width">
+            <Heading text="cart totals" margin="mb-3" size="text-sm" />
+            <CartTotal />
+            <Button
+              type="button"
+              customStyles="text-sm rounded h-10 w-52 my-4"
+              text="proceed to checkout"
+            />
+          </section>
+        )}
       </div>
     </>
   )
