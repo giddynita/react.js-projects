@@ -2,7 +2,9 @@ import Heading from './Heading'
 import { Link } from 'react-router-dom'
 import Rating from './Rating'
 import Price from './Price'
-
+import { useDispatch } from 'react-redux'
+import { addItem } from '../features/cart/cartSlice'
+import { toast } from 'react-toastify'
 const Products = ({ paginatedAndFilteredProducts }) => {
   return (
     <div className="py-8 grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -19,17 +21,37 @@ const Products = ({ paginatedAndFilteredProducts }) => {
           },
           index
         ) => {
+          const cartProduct = {
+            productImage,
+            productName,
+            price: sale ? discountPrice : productPrice,
+            productId,
+            amount: 1,
+            cartID: productId,
+          }
+          const dispatch = useDispatch()
+          const addToCart = () => {
+            dispatch(addItem({ product: cartProduct }))
+            toast.success(`${productName} added to your cart`)
+          }
           return (
-            <Link
-              to={`/shop/products/${productId}`}
+            <div
               key={index}
               className="flex flex-col rounded-md relative overflow-hidden h-max shadow hover:shadow-md  bg-gray-100/50"
             >
-              <figure className="p-1">
-                <img src={productImage} alt={productName} className="mx-auto" />
-              </figure>
+              <Link to={`/shop/products/${productId}`}>
+                <figure className="p-1">
+                  <img
+                    src={productImage}
+                    alt={productName}
+                    className="mx-auto"
+                  />
+                </figure>
+              </Link>
               <div className="text-center bg-base-100 rounded-b-md pb-5 pt-3">
-                <Heading text={productName} />
+                <Link to={`/shop/products/${productId}`}>
+                  <Heading text={productName} />
+                </Link>
                 <Rating productRatings={productRatings} align="mx-auto" />
                 <Price
                   productPrice={productPrice}
@@ -41,6 +63,7 @@ const Products = ({ paginatedAndFilteredProducts }) => {
                 <button
                   type="button"
                   className="font-semibold rounded-md uppercase text-[0.65rem] text-white bg-primary hover:bg-secondary py-2.5 px-3"
+                  onClick={addToCart}
                 >
                   add to cart
                 </button>
@@ -50,7 +73,7 @@ const Products = ({ paginatedAndFilteredProducts }) => {
                   sale!
                 </span>
               )}
-            </Link>
+            </div>
           )
         }
       )}

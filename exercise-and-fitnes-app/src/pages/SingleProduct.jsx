@@ -15,7 +15,7 @@ export const loader = ({ params }) => {
 
 const SingleProduct = () => {
   return (
-    <div>
+    <>
       <section className="bg-[url('./assets/images/shop_product_details.JPG')] h-[23vw] max-h-[180px] w-full bg-cover bg-center text-white flex justify-center flex-col ">
         <div className="uppercase width">
           <h4 className=" text-xl sm:text-3xl font-semibold sm:mb-1">shop</h4>
@@ -33,7 +33,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }
 export default SingleProduct

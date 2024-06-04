@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { About, Error, Home, Layout, Shop, SingleProduct } from './pages'
+import { About, Error, Home, Layout, Shop, SingleProduct, Cart } from './pages'
 import { ErrorElement } from './components'
 // loaders
 import { loader as singleProductLoader } from './pages/SingleProduct'
@@ -32,6 +32,11 @@ const router = createBrowserRouter([
         errorElement: <ErrorElement />,
         loader: singleProductLoader,
         action: reviewAction(store),
+      },
+      {
+        path: 'cart',
+        element: <Cart />,
+        errorElement: <ErrorElement />,
       },
     ],
   },

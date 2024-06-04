@@ -3,32 +3,48 @@ import { FaShoppingCart } from 'react-icons/fa'
 import Heading from '../components/Heading'
 import { MdArrowRight } from 'react-icons/md'
 import { Link, useLoaderData } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { addItem } from '../features/cart/cartSlice'
 
-const ProductDetails = ({}) => {
+const ProductDetails = () => {
   const { singleProduct } = useLoaderData()
   const {
     productImage,
     productName,
     productRatings,
     productPrice,
+    discountPrice,
+    sale,
     productDesc,
     productBrand,
     productColor,
     category,
     subCategory,
+    productId,
   } = singleProduct
   const reviews = useSelector((state) => state.productDetailsState.reviews)
   const [selectedColor, setSelectedColor] = useState(productColor[0])
   const [selectedAmount, setSelectedAmount] = useState(0)
+  const cartProduct = {
+    productImage,
+    productName,
+    price: sale ? discountPrice : productPrice,
+    productId,
+    amount: selectedAmount,
+    cartID: productId,
+  }
+  const dispatch = useDispatch()
+
   const addToCart = () => {
+    if (!selectedAmount) {
+      return
+    }
+    dispatch(addItem({ product: cartProduct }))
     selectedAmount > 1
-      ? toast.success(
-          `${selectedAmount} x ${productName} have been added to your cart`
-        )
-      : toast.success(`${productName} has been added to your cart`)
+      ? toast.success(`${selectedAmount} x ${productName} added to your cart`)
+      : toast.success(`${productName} added to your cart`)
   }
   return (
     <div className="grid sm:grid-cols-2 gap-5 sm:flex-row">
@@ -57,7 +73,7 @@ const ProductDetails = ({}) => {
            focus:outline-none h-8 px-2 text-accent/60 text-sm"
                 min={1}
                 onChange={(e) => {
-                  setSelectedAmount(e.target.value)
+                  setSelectedAmount(parseInt(e.target.value))
                 }}
               />
             </div>
@@ -88,7 +104,7 @@ const ProductDetails = ({}) => {
           <button
             type="submit"
             className="col-span-2 uppercase text-white bg-primary hover:bg-secondary flex items-center justify-center gap-x-1.5 text-xs rounded-md w-full h-10 font-semibold"
-            onClick={selectedAmount && addToCart}
+            onClick={addToCart}
           >
             <FaShoppingCart /> add to cart
           </button>

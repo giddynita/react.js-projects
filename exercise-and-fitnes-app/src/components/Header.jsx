@@ -3,8 +3,11 @@ import { BsFillTelephoneFill } from 'react-icons/bs'
 import { MdEmail } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+import { formatPrice } from '../utils'
 
 const Header = () => {
+  const { numItemsInCart, cartTotal } = useSelector((state) => state.cartState)
   return (
     <header className="hidden sm:flex py-2.5 border-b-[1px] border-accent/10">
       <div className="flex w-[90%] max-w-screen-lg items-center justify-between  mx-auto text-accent/60">
@@ -55,10 +58,10 @@ const Header = () => {
               <FaShoppingCart className="w-4 h-5 flex place-items-center" />
 
               <span className="absolute -top-[0px] -right-2 text-[10px] w-[14px] h-[14px] bg-secondary rounded-full flex items-center justify-center text-white z-10 font-bold">
-                10
+                {numItemsInCart}
               </span>
             </div>
-            <p className="">$0.00</p>
+            <p className="">{formatPrice(cartTotal)}</p>
           </Link>
         </div>
       </div>

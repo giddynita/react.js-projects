@@ -59,10 +59,11 @@ const WorkoutsSubPage = () => {
         <ul>
           {workoutPlans.column.map(({ text, url }, index) => {
             return (
-              <li key={index}>
+              <li>
                 <Link
                   to={url}
-                  className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80 "
+                  className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80"
+                  key={index}
                 >
                   <MdArrowRight className="text-[1rem]" />
                   <span>{text}</span>
