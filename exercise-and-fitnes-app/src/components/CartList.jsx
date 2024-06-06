@@ -31,10 +31,10 @@ const CartList = () => {
           <tr>
             <th className="border"></th>
             <th className="border"></th>
-            <th className="p-3 border text-left">product</th>
-            <th className="p-3 border text-left">price</th>
-            <th className="p-3 border text-left">quantity</th>
-            <th className="p-3 border text-left">subtotal</th>
+            <th className="p-3 border text-left text-sm">product</th>
+            <th className="p-3 border text-left text-sm">price</th>
+            <th className="p-3 border text-left text-sm">quantity</th>
+            <th className="p-3 border text-left text-sm">subtotal</th>
           </tr>
         </thead>
         <tbody>

@@ -36,7 +36,7 @@ const CartTotal = () => {
           <th className="border p-3 w-1/3 uppercase text-sm text-left text-accent/70">
             total
           </th>
-          <td className="text-xs text-right p-3 border text-accent/80">
+          <td className="text-xs text-right p-3 border text-accent/90">
             {formatPrice(orderTotal)}
           </td>
         </tr>

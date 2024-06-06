@@ -91,7 +91,7 @@ const ShopSubPages = () => {
         })}
       </div>
       <figure>
-        <img src={image} alt="shop" />
+        <img src={image} alt="shop" loading="lazy" />
       </figure>
     </div>
   )

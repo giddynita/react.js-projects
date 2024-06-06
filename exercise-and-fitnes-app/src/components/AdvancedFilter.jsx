@@ -44,7 +44,7 @@ const AdvancedFilter = () => {
         <InformationSection />
       </section>
       <section>
-        <img src={paymentIcon} alt="payment-icons" />
+        <img src={paymentIcon} alt="payment-icons" loading="lazy" />
       </section>
     </div>
   )

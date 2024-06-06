@@ -90,6 +90,7 @@ const WorkoutsSubPage = () => {
                       onClick={() => {
                         handleSpecificWorkout(type)
                       }}
+                      loading="lazy"
                     />
                     <button
                       type="button"

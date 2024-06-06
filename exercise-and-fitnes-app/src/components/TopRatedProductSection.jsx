@@ -37,7 +37,7 @@ const TopRatedProductSection = ({ total }) => {
                   </p>
                 </div>
                 <figure className="w-12">
-                  <img src={productImage} alt={productName} />
+                  <img src={productImage} alt={productName} loading="lazy" />
                 </figure>
               </div>
             )

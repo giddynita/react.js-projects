@@ -45,7 +45,7 @@ const BlogSubPage = () => {
             <Link to={url} key={index}>
               <article key={index} className="w-52">
                 <figure className="mb-3">
-                  <img src={image} alt={title} />
+                  <img src={image} alt={title} loading="lazy" />
                 </figure>
                 <Heading text={title} margin="mb-0.5" />
                 <time dateTime="" className="text-accent/50 mt-[-35px]">
@@ -61,7 +61,7 @@ const BlogSubPage = () => {
         })}
       </div>
       <figure>
-        <img src={image} alt="shop" />
+        <img src={image} alt="shop" loading="lazy" />
       </figure>
     </div>
   )

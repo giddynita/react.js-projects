@@ -45,6 +45,7 @@ const Products = ({ paginatedAndFilteredProducts }) => {
                     src={productImage}
                     alt={productName}
                     className="mx-auto"
+                    loading="lazy"
                   />
                 </figure>
               </Link>

@@ -32,11 +32,11 @@ const Cart = () => {
         </section>
         {numItemsInCart === 0 || (
           <section className="width">
-            <Heading text="cart totals" margin="mb-3" size="text-sm" />
+            <Heading text="cart total" margin="mb-3" size="text-sm" />
             <CartTotal />
             <Button
               type="button"
-              customStyles="text-sm rounded h-10 w-52 my-4"
+              customStyles="text-sm rounded h-10 sm:w-52 w-full my-4"
               text="proceed to checkout"
             />
           </section>

@@ -49,7 +49,12 @@ const ProductDetails = () => {
   return (
     <div className="grid sm:grid-cols-2 gap-5 sm:flex-row">
       <figure className="bg-gray-100/50 h-max flex ">
-        <img src={productImage} alt={productName} className="mx-auto" />
+        <img
+          src={productImage}
+          alt={productName}
+          className="mx-auto"
+          loading="lazy"
+        />
       </figure>
       <div>
         <Heading text={productName} size="text-2xl" margin="mb-1" />

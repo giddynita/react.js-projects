@@ -28,6 +28,7 @@ const WorkoutPlanMale = () => {
                 src={image}
                 alt={type}
                 className="w-[150px] mb-12 img cursor-pointer"
+                loading="lazy"
               />
               <button
                 type="button"

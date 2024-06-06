@@ -1,9 +1,19 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { About, Error, Home, Layout, Shop, SingleProduct, Cart } from './pages'
+import {
+  About,
+  Error,
+  Home,
+  Layout,
+  Shop,
+  SingleProduct,
+  Cart,
+  Register,
+} from './pages'
 import { ErrorElement } from './components'
 // loaders
 import { loader as singleProductLoader } from './pages/SingleProduct'
 import { action as reviewAction } from './components/ReviewTab'
+import { action as registerAction } from './pages/Register'
 import { store } from './store'
 const router = createBrowserRouter([
   {
@@ -39,6 +49,12 @@ const router = createBrowserRouter([
         errorElement: <ErrorElement />,
       },
     ],
+  },
+  {
+    path: '/register',
+    element: <Register />,
+    errorElement: <Error />,
+    action: registerAction,
   },
 ])
 const App = () => {

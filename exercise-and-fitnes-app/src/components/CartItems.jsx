@@ -25,6 +25,7 @@ const CartItems = ({ cartItem }) => {
           src={productImage}
           alt={productImage}
           className="w-10 h-10 mx-auto"
+          loading="lazy"
         />
       </td>
       <td className="border p-3 text-primary text-xs">{productName}</td>
