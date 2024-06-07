@@ -1,8 +1,8 @@
-const SubmitButton = ({ text, texting, navigation, btnFunc }) => {
+const SubmitButton = ({ text, texting, navigation }) => {
   return (
     <>
       {navigation.state === 'submitting' ? (
-        <div className="bg-secondary p-3 text-white hover:bg-secondary rounded-md flex items-center gap-x-2 text-sm">
+        <div className="bg-secondary p-3 text-white hover:bg-secondary rounded flex items-center gap-x-2 text-sm">
           <button type="submit" className="uppercase">
             {texting}
           </button>
@@ -11,8 +11,7 @@ const SubmitButton = ({ text, texting, navigation, btnFunc }) => {
       ) : (
         <button
           type="submit"
-          className="uppercase bg-primary p-3 text-white hover:bg-secondary rounded-md text-sm"
-          onClick={btnFunc}
+          className="uppercase bg-primary p-3 text-white hover:bg-secondary rounded text-sm"
         >
           {text}
         </button>

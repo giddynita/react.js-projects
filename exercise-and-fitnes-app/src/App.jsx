@@ -8,13 +8,18 @@ import {
   SingleProduct,
   Cart,
   Register,
+  Login,
 } from './pages'
 import { ErrorElement } from './components'
 // loaders
 import { loader as singleProductLoader } from './pages/SingleProduct'
 import { action as reviewAction } from './components/ReviewTab'
 import { action as registerAction } from './pages/Register'
+import { action as LoginAction } from './pages/Login'
 import { store } from './store'
+import { auth } from './firebase/firebase.utils'
+import { useDispatch } from 'react-redux'
+import { loginUser } from './features/user/userSlice'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -56,8 +61,19 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     action: registerAction,
   },
+  {
+    path: '/login',
+    element: <Login />,
+    errorElement: <Error />,
+    action: LoginAction,
+  },
 ])
 const App = () => {
+  auth.onAuthStateChanged((user) => {
+    const { displayName, email, uid } = user
+    store.dispatch(loginUser({ name: displayName, email, userId: uid }))
+  })
+
   return <RouterProvider router={router} />
 }
 export default App
