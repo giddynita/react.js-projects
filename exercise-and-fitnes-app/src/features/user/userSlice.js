@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 /* const themes = {
@@ -17,7 +18,7 @@ const getUserFromLocalStorage = () => {
 } */
 
 const initialState = {
-  user: /* getUserFromLocalStorage() */ null,
+  user: getUserFromLocalStorage(),
   /* theme: getThemeFromLocalStorage(), */
 }
 
@@ -27,14 +28,13 @@ const userSlice = createSlice({
   reducers: {
     loginUser: (state, action) => {
       const user = { ...action.payload }
-      console.log(user)
-      /* state.user = user
-      localStorage.setItem('user', JSON.stringify(user)) */
+      state.user = user
+      localStorage.setItem('user', JSON.stringify(user))
     },
     logoutUser: (state) => {
       state.user = null
       localStorage.removeItem('user')
-      toast.success('Logged out successfully')
+      toast.success('Signed out successfully')
     },
     toggleTheme: (state) => {
       const { dracula, winter } = themes

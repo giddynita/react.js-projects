@@ -1,10 +1,19 @@
 import { initializeApp } from 'firebase/app'
 import {
+  getFirestore,
+  getDoc,
+  doc,
+  setDoc,
+  getDocs,
+  collection,
+} from 'firebase/firestore'
+import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   signInWithRedirect,
 } from 'firebase/auth'
+import { redirect } from 'react-router-dom'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCsJXUJT8O-Akqr77T89GhPTDncJCx09fI',
@@ -17,7 +26,29 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
+const usersDatabase = getFirestore(app)
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  const userDocRef = doc(usersDatabase, `users/${userAuth.uid}`)
+  const userDocSnapshot = await getDoc(userDocRef)
+  if (!userDocSnapshot.exists()) {
+    const { displayName, email } = userAuth
+    const createdAt = new Date()
+
+    try {
+      setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      })
+    } catch (error) {
+      console.log('error creating user', error.message)
+    }
+  }
+  return userDocRef
+}
 export const auth = getAuth()
+
 const provider = new GoogleAuthProvider()
 provider.setCustomParameters({
   prompt: 'select_account',
@@ -25,7 +56,8 @@ provider.setCustomParameters({
 export const signInWithGoogle = () => {
   if (window.innerWidth <= 425) {
     return signInWithRedirect(auth, provider)
+  } else {
+    return signInWithPopup(auth, provider)
   }
-  return signInWithPopup(auth, provider)
 }
 export default app

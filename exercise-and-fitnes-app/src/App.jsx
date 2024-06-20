@@ -1,4 +1,9 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+  useNavigate,
+} from 'react-router-dom'
 import {
   About,
   Error,
@@ -17,9 +22,10 @@ import { action as reviewAction } from './components/ReviewTab'
 import { action as registerAction } from './pages/Register'
 import { action as LoginAction } from './pages/Login'
 import { store } from './store'
-import { auth } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 import { useDispatch } from 'react-redux'
 import { loginUser } from './features/user/userSlice'
+import { getDoc, onSnapshot } from 'firebase/firestore'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -69,9 +75,15 @@ const router = createBrowserRouter([
   },
 ])
 const App = () => {
-  auth.onAuthStateChanged((user) => {
-    const { displayName, email, uid } = user
-    store.dispatch(loginUser({ name: displayName, email, userId: uid }))
+  auth.onAuthStateChanged(async (userAuth) => {
+    if (userAuth) {
+      const userDocRef = await createUserProfileDocument(userAuth)
+      const snapshot = await getDoc(userDocRef)
+      const { displayName, email } = snapshot.data()
+      store.dispatch(
+        loginUser({ name: displayName, email, userId: snapshot.id })
+      )
+    }
   })
 
   return <RouterProvider router={router} />

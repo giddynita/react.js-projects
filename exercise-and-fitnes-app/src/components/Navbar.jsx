@@ -30,10 +30,10 @@ const Navbar = () => {
           <div
             className="bg-white absolute -right-5 p-3 border border-accent/10 top-8 z-50 transform search "
             style={{
-              animation: searchBar && 'show 0.4s ease',
+              animation: searchBar && 'show 0.35s ease',
               opacity: searchBar ? '1' : '0',
               visibility: searchBar || 'hidden',
-              transition: 'all ease 0.8s',
+              transition: 'all ease 0.7s',
             }}
           >
             <SearchBar width="w-72" placeholder="Search the site..." />
