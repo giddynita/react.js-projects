@@ -3,9 +3,7 @@ const Button = ({ type, customStyles, text, clickFunction }) => {
     <button
       type={type}
       className={`bg-primary text-white uppercase hover:bg-secondary ${customStyles}`}
-      onClick={() => {
-        clickFunction(text)
-      }}
+      onClick={clickFunction}
     >
       {text}
     </button>

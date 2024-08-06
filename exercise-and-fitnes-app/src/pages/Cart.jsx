@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, CartList, CartTotal } from '../components'
-import Heading from '../components/Heading'
 import { clearCart } from '../features/cart/cartSlice'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -20,25 +20,29 @@ const Cart = () => {
         </div>
       </section>
       <div className="my-12">
-        <section className="width mb-10 relative">
+        <section className="width mb-10">
+          {numItemsInCart === 0 || (
+            <div className="text-right mb-4">
+              <Button
+                type="button"
+                customStyles="text-xs rounded py-1 px-2 font-semibold"
+                text="clear cart"
+                clickFunction={clear}
+              />
+            </div>
+          )}
           <CartList />
-          <button
-            type="button"
-            className="absolute -top-6 right-0 capitalize hover:underline text-secondary text-sm cursor-pointer"
-            onClick={clear}
-          >
-            clear cart
-          </button>
         </section>
         {numItemsInCart === 0 || (
           <section className="width">
-            <Heading text="cart total" margin="mb-3" size="text-sm" />
             <CartTotal />
-            <Button
-              type="button"
-              customStyles="text-sm rounded h-10 sm:w-52 w-full my-4"
-              text="proceed to checkout"
-            />
+            <Link to="/checkout">
+              <Button
+                type="button"
+                customStyles="text-sm rounded h-10 sm:w-52 w-full my-4"
+                text="proceed to checkout"
+              />
+            </Link>
           </section>
         )}
       </div>

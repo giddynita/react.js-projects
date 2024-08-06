@@ -55,7 +55,11 @@ const WorkoutsSubPage = () => {
   return (
     <div className="borderTop w-full p-6 grid grid-cols-4 capitalize">
       <div className="mr-6">
-        <Heading text={workoutPlans.heading} margin="pb-4" />
+        <Heading
+          text={workoutPlans.heading}
+          margin="pb-4"
+          size="text-sm font-semibold"
+        />
         <ul>
           {workoutPlans.column.map(({ text, url }, index) => {
             return (
@@ -73,7 +77,11 @@ const WorkoutsSubPage = () => {
         </ul>
       </div>
       <div className="text-center col-span-2 border-r-[1px] border-l-[1px] border-r-black/20 border-l-black/20">
-        <Heading text={findYourWorkoutPlan.heading} margin="pb-4" />
+        <Heading
+          text={findYourWorkoutPlan.heading}
+          margin="pb-4"
+          size="text-sm font-semibold"
+        />
         {sex ? (
           ''
         ) : (
@@ -110,7 +118,11 @@ const WorkoutsSubPage = () => {
         {sex === 'female' && <WorkoutPlanFemale />}
       </div>
       <div className="ml-6">
-        <Heading text={singleWorkouts.heading} margin="mb-4" />
+        <Heading
+          text={singleWorkouts.heading}
+          margin="mb-4"
+          size="text-sm font-semibold"
+        />
         <ul>
           {singleWorkouts.column.map(({ text, url }, index) => {
             return (

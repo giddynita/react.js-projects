@@ -1,10 +1,10 @@
 import Select from './Select'
 
-const list = [
+let list = [
   'Default sorting',
-  'Sort by popularity',
+  'Sort by name: a - z',
+  'Sort by name: z - a',
   'Sort by average rating',
-  'Sort by latest',
   'Sort by price: low to high',
   'Sort by price: high to low',
 ]

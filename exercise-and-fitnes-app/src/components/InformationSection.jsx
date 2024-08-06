@@ -15,7 +15,7 @@ const infoSection = {
 const InformationSection = () => {
   return (
     <>
-      <Heading text={infoSection.heading} margin="mb-3" />
+      <Heading text={infoSection.heading} margin="mb-0.5" size="text-[1rem] " />
       <ul>
         {infoSection.column.map(({ text, url }, index) => {
           return (

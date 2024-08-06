@@ -39,11 +39,12 @@ const ProductDetails = () => {
 
   const addToCart = () => {
     if (!selectedAmount) {
+      toast.error('Select an amount')
       return
     }
     dispatch(addItem({ product: cartProduct }))
     selectedAmount > 1
-      ? toast.success(`${selectedAmount} x ${productName} added to your cart`)
+      ? toast.success(`${selectedAmount}x ${productName} added to your cart`)
       : toast.success(`${productName} added to your cart`)
   }
   return (

@@ -53,11 +53,12 @@ const provider = new GoogleAuthProvider()
 provider.setCustomParameters({
   prompt: 'select_account',
 })
-export const signInWithGoogle = () => {
+export const signInWithGoogle = async () => {
   if (window.innerWidth <= 425) {
-    return signInWithRedirect(auth, provider)
+    await signInWithRedirect(auth, provider)
   } else {
-    return signInWithPopup(auth, provider)
+    await signInWithPopup(auth, provider)
   }
+  return redirect('/')
 }
 export default app

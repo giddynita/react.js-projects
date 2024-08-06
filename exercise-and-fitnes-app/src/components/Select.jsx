@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   handlePerPageFilter,
   handleColorFilter,
+  handleSorting,
 } from '../features/products/productsFiltersSlice'
 
 const Select = ({ name, list, constant }) => {
@@ -11,6 +12,9 @@ const Select = ({ name, list, constant }) => {
   }
   const handleColorTypeFilter = (value) => {
     dispatch(handleColorFilter({ singleColor: value }))
+  }
+  const handleSortFilter = (value) => {
+    dispatch(handleSorting({ sortBy: value }))
   }
   return (
     <div className="form-control">
@@ -27,6 +31,10 @@ const Select = ({ name, list, constant }) => {
           if (name === 'color') {
             const color = value
             handleColorTypeFilter(color)
+          }
+          if (name === 'sorting') {
+            const sortBy = value
+            handleSortFilter(sortBy)
           }
         }}
       >

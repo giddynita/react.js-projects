@@ -2,14 +2,16 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import CartItems from './CartItems'
 import Button from './Button'
+import { RiErrorWarningLine } from 'react-icons/ri'
 
 const CartList = () => {
   const { cartItems, numItemsInCart } = useSelector((state) => state.cartState)
   if (numItemsInCart === 0) {
     return (
       <>
-        <div className="border border-secondary text-xs p-5 rounded-md text-accent-80 bg-secondary/20 mb-4 ">
-          Your cart is currently empty
+        <div className="border border-secondary text-xs p-5 rounded-md text-accent-80 bg-secondary/20 mb-4 flex items-center gap-x-1.5 ">
+          <RiErrorWarningLine className="text-lg text-secondary" /> Your cart is
+          currently empty
         </div>
         <div className="text-center border border-accent/10 border-t-transparent rounded-b-2xl">
           <Link to="/shop">

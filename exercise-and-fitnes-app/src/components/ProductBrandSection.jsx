@@ -20,7 +20,7 @@ const ProductBrandSection = () => {
   const blank = ''
   return (
     <>
-      <Heading text="product brands" margin="mb-3" />
+      <Heading text="product brands" margin="mb-3" size="text-[1rem]" />
       <ul className="flex flex-row flex-wrap gap-1.5 text-white">
         {tags.map((tag, index) => {
           const background =

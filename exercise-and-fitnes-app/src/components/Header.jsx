@@ -82,41 +82,40 @@ const Header = () => {
                   className="text-xs border border-primary rounded py-0.5 font-semibold hover:bg-primary hover:text-white w-14"
                   onClick={handleLogout}
                 >
-                  Sign out
+                  logout
                 </button>
               </div>
             </>
           ) : (
             <>
               <div className="flex justify-end">
-                <Link
-                  to="/cart"
-                  className=" flex  items-center gap-x-3.5 hover:text-primary  text-xs cursor-pointer"
-                >
+                <div className=" flex  items-center gap-x-3.5 text-xs">
                   <div className=" relative ">
-                    <FaShoppingCart className="w-4 h-5 flex place-items-center" />
-
+                    <Link to="/cart">
+                      <FaShoppingCart className="w-4 h-5 flex place-items-center hover:text-primary " />
+                    </Link>
                     <span className="absolute -top-[0px] -right-2 text-[10px] w-[14px] h-[14px] bg-secondary rounded-full flex items-center justify-center text-white z-10 font-bold">
                       {numItemsInCart}
                     </span>
                   </div>
-                  <p className="">{formatPrice(cartTotal)}</p>
-                </Link>
+                  <p className="border border-secondary bg-secondary text-white rounded py-0.5 px-1.5">
+                    {formatPrice(cartTotal)}
+                  </p>
+                </div>
               </div>
 
-              <div className="flex gap-x-2 justify-center items-center pt-0.5">
+              <div className="flex gap-x-2 justify-center items-center">
                 <Link
                   to="/login"
-                  className="link link-hover text-xs sm: text-sm"
+                  className=" text-xs border border-primary rounded py-0.5 px-1.5 hover:text-white hover:bg-primary"
                 >
-                  Sign in
+                  Login
                 </Link>
-                <p className="text-xs sm: text-sm">or</p>
                 <Link
                   to="/register"
-                  className="link link-hover text-xs sm: text-sm"
+                  className=" text-xs py-0.5 px-1.5 rounded border border-secondary   hover:bg-secondary hover:text-white"
                 >
-                  Create Account
+                  Sign up
                 </Link>
               </div>
             </>

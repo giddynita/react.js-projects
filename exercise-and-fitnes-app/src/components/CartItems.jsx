@@ -2,15 +2,18 @@ import { MdCancel } from 'react-icons/md'
 import { formatPrice, generateAmountOptions } from '../utils'
 import { useDispatch } from 'react-redux'
 import { editItem, removeItem } from '../features/cart/cartSlice'
+import { Link } from 'react-router-dom'
+
 const CartItems = ({ cartItem }) => {
-  const { productImage, productName, price, amount, cartID } = cartItem
+  const { productImage, productName, price, amount, cartID, productId } =
+    cartItem
   const dispatch = useDispatch()
   const handleAmount = (e) => {
     dispatch(editItem({ cartID, amount: parseInt(e.target.value) }))
   }
   const remove = () => {
     console.log('removed')
-    dispatch(removeItem({ cartID }))
+    dispatch(removeItem({ cartID, productName }))
   }
   return (
     <tr>
@@ -28,7 +31,11 @@ const CartItems = ({ cartItem }) => {
           loading="lazy"
         />
       </td>
-      <td className="border p-3 text-primary text-xs">{productName}</td>
+      <td className="border p-3 text-accent/80 text-xs">
+        <Link to={`/shop/products/${productId}`} className="hover:text-primary">
+          {productName}
+        </Link>
+      </td>
       <td className="border p-3 w-[10%] text-xs hidden md:table-cell text-xs">
         <p>{formatPrice(price)}</p>
       </td>

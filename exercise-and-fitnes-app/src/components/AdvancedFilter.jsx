@@ -7,12 +7,16 @@ import Select from './Select'
 import TopRatedProductSection from './TopRatedProductSection'
 import ProductCategoriesSection from './ProductCategoriesSection'
 import paymentIcon from '../assets/images/payment-icons.png'
+import { useSelector } from 'react-redux'
 
 const AdvancedFilter = () => {
+  const { products } = useSelector((state) => {
+    return state.productState
+  })
   return (
     <div className=" w-full text-sm mb-10">
       <section className="mb-6">
-        <Heading text="search" margin="mb-3" />
+        <Heading text="search" margin="mb-3" size="text-[1rem] " />
         <SearchBar
           width="w-full"
           borderRadius="rounded-md"
@@ -23,19 +27,19 @@ const AdvancedFilter = () => {
         <ProductCategoriesSection />
       </section>
       <section className="mb-6">
-        <Heading text="top rated products" margin="mb-3 " />
+        <Heading text="top rated products" margin="mb-2.5" size="text-[1rem]" />
         <TopRatedProductSection total={3} />
       </section>
       <section className="mb-6">
-        <Heading text="filter by color" margin="mb-3" />
+        <Heading text="filter by color" margin="mb-3" size="text-[1rem]" />
         <Select
           name="color"
           list={['Any Color', 'Red', 'Blue', 'Black', 'White']}
         />
       </section>
       <section className="mb-6">
-        <Heading text="filter by price" margin="mb-3" />
-        <Range name="price" label="price" />
+        <Heading text="filter by price" margin="mb-3" size="text-[1rem]" />
+        <Range name="price" label="price" products={products} />
       </section>
       <section className="mb-6 text-xs">
         <ProductBrandSection />

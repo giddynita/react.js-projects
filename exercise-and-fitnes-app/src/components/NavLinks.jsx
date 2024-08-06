@@ -11,8 +11,8 @@ const navLinks = [
   { url: 'nutrition', page: 'nutrition' },
   { url: 'features', page: 'features' },
   { url: 'shop', page: 'shop' },
-  { url: 'blog', page: 'blog' },
-  { url: 'contacts', page: 'contacts' },
+  /* { url: 'blog', page: 'blog' }, */
+  { url: 'contact', page: 'contact' },
 ]
 const NavLinks = () => {
   const dispatch = useDispatch()

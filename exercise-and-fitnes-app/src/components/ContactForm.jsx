@@ -18,6 +18,7 @@ const ContactForm = () => {
             id="name"
             placeholder="Your name..."
             margin="pl-8"
+            label="hidden"
           />
           <span className="absolute -translate-y-1/2 top-1/2 left-3 text-accent/70">
             <RiAccountBoxFill className=" w-4 h-4 " />
@@ -30,6 +31,7 @@ const ContactForm = () => {
             id="email"
             placeholder="Your E-Mail..."
             margin="pl-8"
+            label="hidden"
           />
           <span className="absolute -translate-y-1/2 top-1/2 left-3 text-accent/70">
             <MdEmail className="w-4 h-4" />
@@ -45,8 +47,8 @@ const ContactForm = () => {
           placeholder="Your question..."
           margin="mt-4 mb-6 py-3 pl-8"
         />
-        <span className="absolute top-3 left-3 text-accent/70">
-          <FaPencilAlt className="w-4 h-4 " />
+        <span className="absolute top-3.5 left-3 text-accent/70">
+          <FaPencilAlt className="w-3.5 h-3.5 " />
         </span>
       </div>
       <SubmitButton

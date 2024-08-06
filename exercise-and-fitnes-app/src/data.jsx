@@ -2,11 +2,11 @@ import { nanoid } from '@reduxjs/toolkit'
 import image1 from './assets/images/e-book icon.png'
 import product_1 from './assets/images/shop-product-1.png'
 
-export const products = [
+export const productList = [
   {
     productImage: product_1,
-    productName: 'Shester Bench',
-    productRatings: 3,
+    productName: 'shester bench',
+    productRatings: 5,
     productPrice: 20000,
     category: 'equipment',
     subCategory: 'machines',
@@ -22,7 +22,7 @@ export const products = [
   {
     productImage: image1,
     productName: 'E-book 2',
-    productRatings: 4,
+    productRatings: 5,
     productPrice: 50000,
     category: 'equipment',
     topRated: true,
@@ -35,7 +35,7 @@ export const products = [
   {
     productImage: image1,
     productName: 'E-book 3',
-    productRatings: 4,
+    productRatings: 5,
     productPrice: 6000,
     category: 'nutrition',
     topRated: true,

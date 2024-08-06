@@ -5,6 +5,7 @@ import Price from './Price'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../features/cart/cartSlice'
 import { toast } from 'react-toastify'
+import Button from './Button'
 const Products = ({ paginatedAndFilteredProducts }) => {
   return (
     <div className="py-8 grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -61,13 +62,12 @@ const Products = ({ paginatedAndFilteredProducts }) => {
                   margin="my-2"
                   size="text-[0.8rem]"
                 />
-                <button
+                <Button
                   type="button"
-                  className="font-semibold rounded-md uppercase text-[0.65rem] text-white bg-primary hover:bg-secondary py-2.5 px-3"
-                  onClick={addToCart}
-                >
-                  add to cart
-                </button>
+                  text="add to cart"
+                  customStyles="font-semibold rounded-md text-[0.65rem] py-2.5 px-3"
+                  clickFunction={addToCart}
+                />
               </div>
               {sale && (
                 <span className="absolute top-3 -right-6 bg-primary text-white uppercase text-xs rotate-45 w-24 text-center py-0.5 pl-0.5 font-semibold tracking-wider">

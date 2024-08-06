@@ -14,7 +14,7 @@ const subpages = {
   shop: <ShopSubPages />,
   workouts: <WorkoutsSubPage />,
   blog: <BlogSubPage />,
-  contacts: <ContactSubPage />,
+  contact: <ContactSubPage />,
 }
 
 const SubPages = () => {

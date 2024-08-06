@@ -36,7 +36,11 @@ const Navbar = () => {
               transition: 'all ease 0.7s',
             }}
           >
-            <SearchBar width="w-72" placeholder="Search the site..." />
+            <SearchBar
+              width="w-72"
+              placeholder="Search the site..."
+              hideButton
+            />
           </div>
           <span
             className=" absolute border-[9px] border-transparent border-b-white  z-50 top-[16px] -left-[4px] origin-right "

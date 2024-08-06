@@ -14,18 +14,23 @@ import {
   Cart,
   Register,
   Login,
+  Checkout,
+  Contact,
+  Category,
+  SubCategory,
 } from './pages'
 import { ErrorElement } from './components'
 // loaders
 import { loader as singleProductLoader } from './pages/SingleProduct'
+import { loader as productCategoryLoader } from './pages/Category'
+import { loader as productSubCategoryLoader } from './pages/SubCategory'
 import { action as reviewAction } from './components/ReviewTab'
 import { action as registerAction } from './pages/Register'
 import { action as LoginAction } from './pages/Login'
 import { store } from './store'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
-import { useDispatch } from 'react-redux'
 import { loginUser } from './features/user/userSlice'
-import { getDoc, onSnapshot } from 'firebase/firestore'
+import { getDoc } from 'firebase/firestore'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -55,8 +60,30 @@ const router = createBrowserRouter([
         action: reviewAction(store),
       },
       {
+        path: 'shop/product-category/:category',
+        element: <Category />,
+        errorElement: <ErrorElement />,
+        loader: productCategoryLoader,
+      },
+      {
+        path: 'shop/product-category/:category/:subcategory',
+        element: <SubCategory />,
+        errorElement: <ErrorElement />,
+        loader: productSubCategoryLoader,
+      },
+      {
         path: 'cart',
         element: <Cart />,
+        errorElement: <ErrorElement />,
+      },
+      {
+        path: 'checkout',
+        element: <Checkout />,
+        errorElement: <ErrorElement />,
+      },
+      {
+        path: 'contact',
+        element: <Contact />,
         errorElement: <ErrorElement />,
       },
     ],

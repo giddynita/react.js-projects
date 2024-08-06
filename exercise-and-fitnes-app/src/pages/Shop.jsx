@@ -6,12 +6,19 @@ import {
   Pagination,
   Products,
 } from '../components'
-import { products } from '../data'
 const Shop = () => {
-  const { searchWord, price, colorType, brand, selectedPage, productsPerPage } =
-    useSelector((state) => {
-      return state.productState
-    })
+  const {
+    searchWord,
+    price,
+    colorType,
+    brand,
+    selectedPage,
+    productsPerPage,
+    products,
+  } = useSelector((state) => {
+    return state.productState
+  })
+
   const searchAndPriceFiltered = products
     .filter((product) => product.productName.includes(searchWord))
     .filter((product) =>
@@ -30,6 +37,7 @@ const Shop = () => {
         (product) => product.productBrand === brand
       )
     : searchAndPriceFilteredWithColor
+
   const paginatedAndFilteredProducts =
     searchAndPriceFilteredWithColorAndBrand.slice(
       selectedPage * productsPerPage,

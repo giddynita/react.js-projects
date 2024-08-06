@@ -70,7 +70,11 @@ const ShopSubPages = () => {
         {columns.map(({ column, heading }, index) => {
           return (
             <div key={index}>
-              <Heading text={heading} margin="mb-4" />
+              <Heading
+                text={heading}
+                margin="mb-4"
+                size="text-sm font-semibold"
+              />
               <ul>
                 {column.map(({ text, url }, index) => {
                   return (
