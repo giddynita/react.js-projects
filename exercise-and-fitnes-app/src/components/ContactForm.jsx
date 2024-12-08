@@ -18,7 +18,6 @@ const ContactForm = () => {
             id="name"
             placeholder="Your name..."
             margin="pl-8"
-            label="hidden"
           />
           <span className="absolute -translate-y-1/2 top-1/2 left-3 text-accent/70">
             <RiAccountBoxFill className=" w-4 h-4 " />
@@ -31,7 +30,6 @@ const ContactForm = () => {
             id="email"
             placeholder="Your E-Mail..."
             margin="pl-8"
-            label="hidden"
           />
           <span className="absolute -translate-y-1/2 top-1/2 left-3 text-accent/70">
             <MdEmail className="w-4 h-4" />

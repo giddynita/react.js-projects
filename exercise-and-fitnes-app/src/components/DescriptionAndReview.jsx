@@ -5,7 +5,7 @@ import ReviewTab from './ReviewTab'
 
 const buttonType = ['description', 'review']
 
-const DescriptionAndReview = () => {
+const DescriptionAndReview = ({ singleProduct }) => {
   const { active } = useSelector((state) => state.productDetailsState)
   const dispatch = useDispatch()
   return (
@@ -31,7 +31,9 @@ const DescriptionAndReview = () => {
         <span className="border-b   sm:flex-1"> </span>
       </div>
       <div className="border-[1px] border-accent/10 p-8 pb-6 relative z-30 border-t-transparent">
-        {active === 'description' && <DescriptionTab />}
+        {active === 'description' && (
+          <DescriptionTab singleProduct={singleProduct} />
+        )}
         {active === 'review' && <ReviewTab />}
       </div>
     </div>

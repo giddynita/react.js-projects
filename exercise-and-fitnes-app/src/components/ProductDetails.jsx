@@ -2,16 +2,15 @@ import { Price, Rating } from '../components'
 import { FaShoppingCart } from 'react-icons/fa'
 import Heading from '../components/Heading'
 import { MdArrowRight } from 'react-icons/md'
-import { Link, useLoaderData } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { addItem } from '../features/cart/cartSlice'
 
-const ProductDetails = () => {
-  const { singleProduct } = useLoaderData()
+const ProductDetails = ({ singleProduct }) => {
   const {
-    productImage,
+    image,
     productName,
     productRatings,
     productPrice,
@@ -19,16 +18,16 @@ const ProductDetails = () => {
     sale,
     productDesc,
     productBrand,
-    productColor,
+    /*  productColor, */
     category,
     subCategory,
     productId,
   } = singleProduct
   const reviews = useSelector((state) => state.productDetailsState.reviews)
-  const [selectedColor, setSelectedColor] = useState(productColor[0])
+  /* const [selectedColor, setSelectedColor] = useState(productColor[0]) */
   const [selectedAmount, setSelectedAmount] = useState(0)
   const cartProduct = {
-    productImage,
+    image,
     productName,
     price: sale ? discountPrice : productPrice,
     productId,
@@ -36,7 +35,7 @@ const ProductDetails = () => {
     cartID: productId,
   }
   const dispatch = useDispatch()
-
+  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
   const addToCart = () => {
     if (!selectedAmount) {
       toast.error('Select an amount')
@@ -44,18 +43,15 @@ const ProductDetails = () => {
     }
     dispatch(addItem({ product: cartProduct }))
     selectedAmount > 1
-      ? toast.success(`${selectedAmount}x ${productName} added to your cart`)
-      : toast.success(`${productName} added to your cart`)
+      ? toast.success(
+          `${selectedAmount}x ${capitalize(productName)} added to your cart`
+        )
+      : toast.success(`${capitalize(productName)} added to your cart`)
   }
   return (
     <div className="grid sm:grid-cols-2 gap-5 sm:flex-row">
       <figure className="bg-gray-100/50 h-max flex ">
-        <img
-          src={productImage}
-          alt={productName}
-          className="mx-auto"
-          loading="lazy"
-        />
+        <img src={image} alt={productName} className="mx-auto" loading="lazy" />
       </figure>
       <div>
         <Heading text={productName} size="text-2xl" margin="mb-1" />
@@ -83,9 +79,9 @@ const ProductDetails = () => {
                 }}
               />
             </div>
-            <div className="flex items-center gap-x-1.5 ">
+            {/* <div className="flex items-center gap-x-1.5 ">
               <label htmlFor="color">colors: </label>
-              {productColor.map((color) => {
+               {productColor.map((color) => {
                 return (
                   <input
                     key={color}
@@ -104,8 +100,8 @@ const ProductDetails = () => {
                     }}
                   />
                 )
-              })}
-            </div>
+              })} 
+            </div> */}
           </div>
           <button
             type="submit"
@@ -123,11 +119,11 @@ const ProductDetails = () => {
                 Categories:
               </span>
               <span className="text-primary flex gap-x-1">
-                <Link className="hover:text-secondary capitalize">
+                {/* <Link className="hover:text-secondary capitalize">
                   {category},
-                </Link>
+                </Link> */}
                 <Link className="hover:text-secondary capitalize">
-                  {subCategory}
+                  {subCategory || ''}
                 </Link>
               </span>
             </li>

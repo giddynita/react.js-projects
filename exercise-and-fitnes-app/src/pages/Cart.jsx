@@ -22,10 +22,10 @@ const Cart = () => {
       <div className="my-12">
         <section className="width mb-10">
           {numItemsInCart === 0 || (
-            <div className="text-right mb-4">
+            <div className=" mb-4 w-max">
               <Button
                 type="button"
-                customStyles="text-xs rounded py-1 px-2 font-semibold"
+                customStyles="text-xs rounded py-1 px-2 font-semibold flex items-center gap-1  "
                 text="clear cart"
                 clickFunction={clear}
               />

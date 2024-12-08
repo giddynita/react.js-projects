@@ -5,6 +5,7 @@ import {
   handlePriceFilter,
   handleNutritionPriceFilter,
 } from '../features/products/productsFiltersSlice'
+import { BsDash } from 'react-icons/bs'
 
 const Range = ({ label, name, products }) => {
   const findLeastPrice = (arr) => {
@@ -20,26 +21,30 @@ const Range = ({ label, name, products }) => {
 
   const maxProduct = findMAxPrice(products)
   const leastProduct = findLeastPrice(products)
+  const dispatch = useDispatch()
+  /*  const setMaxPrice = (price) => {
+    dispatch(handlePriceFilter({ price }))
+  }
+  setMaxPrice(maxProduct.productPrice) */
 
-  const selectedPrice = useSelector((state) => state.productState.price)
-  const selectedEquipmentPrice = useSelector(
+  /* const selectedEquipmentPrice = useSelector(
     (state) => state.productState.equipment
   )
   const selectedNutritionPrice = useSelector(
     (state) => state.productState.nutrition
-  )
+  ) */
 
-  const dispatch = useDispatch()
   const handlePriceChange = (price) => {
     dispatch(handlePriceFilter({ price }))
   }
-  const handleEquipmentPriceChange = (equipment) => {
+  /* const handleEquipmentPriceChange = (equipment) => {
     dispatch(handleEquipmentPriceFilter({ equipment }))
   }
   const handleNutritionPriceChange = (nutrition) => {
     dispatch(handleNutritionPriceFilter({ nutrition }))
-  }
-  const step = 1000
+  } */
+  const selectedPrice = useSelector((state) => state.productState.price)
+  const step = (maxProduct.productPrice - leastProduct.productPrice) / 10
   return (
     <div className="form-control">
       <label
@@ -53,19 +58,18 @@ const Range = ({ label, name, products }) => {
           max:{formatPrice(maxProduct.productPrice)}
         </span>
       </label>
-      {name === 'price' && (
+      {
         <>
           <input
             type="range"
             name={name}
             min={leastProduct.productPrice}
             max={maxProduct.productPrice}
-            value={selectedPrice}
+            value={selectedPrice || maxProduct.productPrice}
             onChange={(e) => {
               handlePriceChange(e.target.value)
             }}
             step={step}
-            className={`range range-primary range-md`}
           />
           <div
             className="w-full flex items-center  text-xs  mt-3 text-accent/50 font-semibold gap-x-1.5"
@@ -75,14 +79,14 @@ const Range = ({ label, name, products }) => {
             }}
           >
             <span className="capitalize">Price range: </span>
-            <span>
-              {formatPrice(leastProduct.productPrice)} -
-              {formatPrice(selectedPrice)}
+            <span className="flex items-center gap-x-0.5">
+              {formatPrice(leastProduct.productPrice)} <BsDash />
+              {formatPrice(selectedPrice || maxProduct.productPrice)}
             </span>
           </div>
         </>
-      )}
-      {name === 'equipment' && (
+      }
+      {/* {name === 'equipment' && (
         <>
           <input
             type="range"
@@ -143,7 +147,7 @@ const Range = ({ label, name, products }) => {
             </span>
           </div>
         </>
-      )}
+      )} */}
     </div>
   )
 }

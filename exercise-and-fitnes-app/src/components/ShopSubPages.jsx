@@ -4,7 +4,7 @@ import image from '../assets/images/img.png'
 import Heading from './Heading'
 import InformationColumn from './InformationSection'
 
-const columns = [
+export const columns = [
   {
     heading: 'equipment',
     column: [
@@ -60,16 +60,19 @@ const ShopSubPages = () => {
   return (
     <div className="borderTop w-full p-6">
       <div
-        className="mb-3"
-        style={{
+        className="mb-3 grid grid-cols-5"
+        /* style={{
           columnCount: 5,
           columnRule: '1px solid #0000001a',
           columnGap: '4rem',
-        }}
+        }} */
       >
         {columns.map(({ column, heading }, index) => {
           return (
-            <div key={index}>
+            <div
+              key={index}
+              className="border-r-[1px] last:border-r-0 mr-6 border-r-gray-200 pr-3"
+            >
               <Heading
                 text={heading}
                 margin="mb-4"
@@ -80,10 +83,10 @@ const ShopSubPages = () => {
                   return (
                     <li key={index}>
                       <Link
-                        to={url}
-                        className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80 capitalize"
+                        /*  to={url} */
+                        className=" flex items-start py-1.5 hover:bg-accent/[0.02] hover:text-accent/80 capitalize cursor-pointer"
                       >
-                        <MdArrowRight className="text-[1rem]" />
+                        <MdArrowRight className="text-[1rem]  shrink-0" />
                         <span>{text}</span>
                       </Link>
                     </li>

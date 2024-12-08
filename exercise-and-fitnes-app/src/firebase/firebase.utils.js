@@ -3,8 +3,8 @@ import {
   getFirestore,
   getDoc,
   doc,
+  addDoc,
   setDoc,
-  getDocs,
   collection,
 } from 'firebase/firestore'
 import {
@@ -14,6 +14,7 @@ import {
   signInWithRedirect,
 } from 'firebase/auth'
 import { redirect } from 'react-router-dom'
+import { formatDateTime } from '../utils'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCsJXUJT8O-Akqr77T89GhPTDncJCx09fI',
@@ -26,10 +27,22 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-const usersDatabase = getFirestore(app)
-export const createUserProfileDocument = async (userAuth, additionalData) => {
-  const userDocRef = doc(usersDatabase, `users/${userAuth.uid}`)
-  const userDocSnapshot = await getDoc(userDocRef)
+export const database = getFirestore(app)
+export const createUserProfileDocument = async (userAuth, name) => {
+  const userDocRef = doc(database, `users/${userAuth.uid}`)
+  const { email } = userAuth
+  const createdAt = new Date()
+  try {
+    await setDoc(userDocRef, {
+      email,
+      createdAt,
+      username: name,
+    })
+  } catch (error) {
+    console.log('error creating user in the database', error.message)
+  }
+
+  /* const userDocSnapshot = await getDoc(userDocRef)
   if (!userDocSnapshot.exists()) {
     const { displayName, email } = userAuth
     const createdAt = new Date()
@@ -44,21 +57,29 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     } catch (error) {
       console.log('error creating user', error.message)
     }
-  }
+  } */
   return userDocRef
 }
-export const auth = getAuth()
-
+export const auth = getAuth(app)
+export const createOrder = async (uid, orderInfo) => {
+  const userDocRef = collection(database, `orders/${uid}/orders`)
+  const createdAt = new Date()
+  try {
+    await addDoc(userDocRef, {
+      createdAt: formatDateTime(createdAt),
+      status: 'pending',
+      ...orderInfo,
+    })
+  } catch (error) {
+    console.log('error creating order in the database', error.message)
+  }
+}
 const provider = new GoogleAuthProvider()
 provider.setCustomParameters({
   prompt: 'select_account',
 })
 export const signInWithGoogle = async () => {
-  if (window.innerWidth <= 425) {
-    await signInWithRedirect(auth, provider)
-  } else {
-    await signInWithPopup(auth, provider)
-  }
+  await signInWithPopup(auth, provider)
   return redirect('/')
 }
 export default app

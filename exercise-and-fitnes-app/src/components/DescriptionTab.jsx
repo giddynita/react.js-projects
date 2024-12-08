@@ -1,8 +1,7 @@
 import { useLoaderData } from 'react-router-dom'
 import Heading from './Heading'
 
-const DescriptionTab = () => {
-  const { singleProduct } = useLoaderData()
+const DescriptionTab = ({ singleProduct }) => {
   const { productDesc } = singleProduct
   return (
     <>

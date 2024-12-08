@@ -12,14 +12,14 @@ const SearchBar = ({ width, borderRadius, placeholder, hideButton }) => {
   }
   const searchButtonClick = () => handleSearchInput(productSearch)
   return (
-    <div className="flex gap-x-2">
-      <div className="relative">
+    <div className="flex gap-x-2 z-50">
+      <div className="relative w-full">
         <input
           type="search"
           name="search"
           id="search"
           placeholder={placeholder}
-          className={`p-2 pl-7 font-normal text-xs bg-base-100 border-[1px] border-accent/15 ${width} ${borderRadius} focus:outline-none placeholder-italic search`}
+          className={`p-2 pl-7 font-normal text-xs bg-base-100 border-[1px] border-accent/15  ${width} ${borderRadius} focus:outline-none placeholder-italic search`}
           value={productSearch}
           onChange={(e) => setProductSearch(e.target.value.toLowerCase())}
           onKeyDown={(e) => {

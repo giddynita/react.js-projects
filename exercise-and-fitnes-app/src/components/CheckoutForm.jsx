@@ -5,59 +5,66 @@ import { formatPrice } from '../utils'
 import { clearCart } from '../features/cart/cartSlice'
 import { toast } from 'react-toastify'
 import Heading from './Heading'
+import { createOrder } from '../firebase/firebase.utils'
 
 export const action =
-  (store, queryClient) =>
+  (store) =>
   async ({ request }) => {
-    /*  const formData = await request.formData()
-    const { name, address } = Object.fromEntries(formData)
-    const user = store.getState().userState.user
+    const formData = await request.formData()
+    const { name, address, phone } = Object.fromEntries(formData)
+    const { uid } = store.getState().userState.user
     const { cartItems, orderTotal, numItemsInCart } = store.getState().cartState
 
-    const info = {
+    const orderInfo = {
       name,
       address,
-      chargeTotal: orderTotal,
+      phone,
       orderTotal: formatPrice(orderTotal),
       cartItems,
       numItemsInCart,
     }
-    try {
-      const response = await customFetch.post(
-        '/orders',
-        {
-          data: info,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      )
-      queryClient.removeQueries(['orders'])
-      store.dispatch(clearCart())
-      toast.success('order placed successfully')
-      return redirect('/orders')
-    } catch (error) {
-      const errorMessage =
-        error?.response?.data?.error?.message ||
-        'there was an error placing your order'
-      toast.error(errorMessage)
-      if (error?.response?.status === 401 || 403) {
-        return redirect('/login')
-      } 
+    if (!name || !address || !phone) {
+      toast.error('incomplete information provided')
       return null
-    } */
-    return null
+    }
+    try {
+      await createOrder(uid, orderInfo)
+      toast.success('Order placed successfully')
+      store.dispatch(clearCart())
+      return redirect('/') /* redirect('/orders') */
+    } catch (error) {
+      console.log(error.message, error.code)
+      toast.error(`${error.code}: ${error.message}`)
+      return null
+    }
   }
 const CheckoutForm = () => {
   const navigation = useNavigation()
   return (
-    <div>
-      <Heading text="shipping information" margin="" size="text-sm" />
+    <div className="min-h-screen">
+      <Heading text="shipping information" margin="mb-4" size="text-sm" />
       <Form method="POST" className="flex flex-col gap-y-2">
-        <FormInput placeholder="Name" name="name" type="text" />
-        <FormInput placeholder="Shipping Address" name="address" type="text" />
+        <FormInput
+          placeholder="Enter your full name"
+          name="name"
+          type="text"
+          label="Name"
+          required="*"
+        />
+        <FormInput
+          placeholder="Enter your shipping address"
+          name="address"
+          type="text"
+          label="Shipping Address"
+          required="*"
+        />
+        <FormInput
+          placeholder="Enter your phone number"
+          name="phone"
+          type="tel"
+          label="Contact Address"
+          required="*"
+        />
         <div className="mt-4">
           <SubmitButton
             text="place your order"

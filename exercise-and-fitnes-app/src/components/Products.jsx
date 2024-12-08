@@ -8,11 +8,11 @@ import { toast } from 'react-toastify'
 import Button from './Button'
 const Products = ({ paginatedAndFilteredProducts }) => {
   return (
-    <div className="py-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+    <div className="py-8 grid sm:grid-cols-3 md:grid-cols-4 gap-8">
       {paginatedAndFilteredProducts.map(
         (
           {
-            productImage,
+            image,
             productName,
             productRatings,
             productPrice,
@@ -23,38 +23,45 @@ const Products = ({ paginatedAndFilteredProducts }) => {
           index
         ) => {
           const cartProduct = {
-            productImage,
+            image,
             productName,
             price: sale ? discountPrice : productPrice,
             productId,
             amount: 1,
             cartID: productId,
           }
+          const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
           const dispatch = useDispatch()
           const addToCart = () => {
             dispatch(addItem({ product: cartProduct }))
-            toast.success(`${productName} added to your cart`)
+            toast.success(`${capitalize(productName)} added to your cart`)
           }
           return (
             <div
               key={index}
-              className="flex flex-col rounded-md relative overflow-hidden h-max shadow hover:shadow-md  bg-gray-100/50"
+              className="flex flex-col rounded-md relative shadow hover:shadow-md bg-gray-100/50 min-h-16 overflow-hidden "
             >
-              <Link to={`/shop/products/${productId}`}>
-                <figure className="p-1">
-                  <img
-                    src={productImage}
-                    alt={productName}
-                    className="mx-auto"
-                    loading="lazy"
-                  />
-                </figure>
-              </Link>
-              <div className="text-center bg-base-100 rounded-b-md pb-5 pt-3">
+              <div className="p-4 bg-white">
                 <Link to={`/shop/products/${productId}`}>
-                  <Heading text={productName} />
+                  <figure>
+                    <img
+                      src={image}
+                      alt={productName}
+                      className="mx-auto w-24"
+                      loading="lazy"
+                    />
+                  </figure>
                 </Link>
-                <Rating productRatings={productRatings} align="mx-auto" />
+              </div>
+
+              <div className="text-center  rounded-b-md pb-5 pt-3 px-4">
+                <Link to={`/shop/products/${productId}`}>
+                  <Heading
+                    text={productName}
+                    size="text-[.8rem] overflow-hidden line-clamp-2 text-ellipsis"
+                  />
+                </Link>
+                <Rating value={productRatings} align="mx-auto" />
                 <Price
                   productPrice={productPrice}
                   discountPrice={discountPrice}
@@ -70,7 +77,7 @@ const Products = ({ paginatedAndFilteredProducts }) => {
                 />
               </div>
               {sale && (
-                <span className="absolute top-3 -right-6 bg-primary text-white uppercase text-xs rotate-45 w-24 text-center py-0.5 pl-0.5 font-semibold tracking-wider">
+                <span className="absolute top-0 right-0 bg-primary text-white uppercase text-[0.6rem] w-10 text-center py-0.5 pl-0.5 font-semibold tracking-wider">
                   sale!
                 </span>
               )}

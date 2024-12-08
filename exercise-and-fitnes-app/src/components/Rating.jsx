@@ -7,14 +7,14 @@ const ratings = [
   <TiStarFullOutline />,
 ]
 
-const Rating = ({ productRatings, align }) => {
+const Rating = ({ value, align }) => {
   return (
     <div
       className={`flex items-center justify-center w-max  text-accent/30 background-clip ${align} text-sm`}
     >
-      {productRatings &&
+      {value &&
         ratings.map((item, index) => {
-          const rating = index < productRatings ? 'text-yellow-500' : ''
+          const rating = index < value ? 'text-yellow-500' : ''
           return (
             <h5 key={index} className={rating}>
               {item}

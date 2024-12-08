@@ -1,10 +1,10 @@
+import { useSelector } from 'react-redux'
 import { formatPrice } from '../utils'
 import Rating from './Rating'
 import { Link } from 'react-router-dom'
-import { productList } from '../data'
 
-const TopRatedProductSection = ({ total }) => {
-  const topRated = productList
+const TopRatedProductSection = ({ total, products }) => {
+  const topRated = products
     .filter((item) => item.topRated)
     .filter((_, index) => index < total)
 
@@ -12,13 +12,7 @@ const TopRatedProductSection = ({ total }) => {
     <div>
       {topRated.map(
         (
-          {
-            productName,
-            productPrice,
-            productImage,
-            productRatings,
-            productId,
-          },
+          { productName, productPrice, image, productRatings, productId },
           index
         ) => {
           return (
@@ -39,7 +33,7 @@ const TopRatedProductSection = ({ total }) => {
                 </p>
               </div>
               <figure className="w-12">
-                <img src={productImage} alt={productName} loading="lazy" />
+                <img src={image} alt={productName} loading="lazy" />
               </figure>
             </div>
           )

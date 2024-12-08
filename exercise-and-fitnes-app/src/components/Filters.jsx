@@ -8,17 +8,17 @@ let list = [
   'Sort by price: low to high',
   'Sort by price: high to low',
 ]
-const pageNumber = [9, 18, 27]
+/* const pageNumber = [6, 9, 12] */
 
 const Filters = () => {
   return (
     <div className="flex flex-col gap-1.5 md:flex-row justify-between">
       <Select name="sorting" list={list} />
-      <Select
+      {/* <Select
         name="products-per-page"
         list={pageNumber}
         constant="Products per page"
-      />
+      /> */}
     </div>
   )
 }

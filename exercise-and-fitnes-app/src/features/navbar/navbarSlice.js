@@ -5,6 +5,7 @@ const defaultState = {
   subpage: null,
   searchBar: false,
   workoutPlan: null,
+  navLinkWidth: null,
 }
 
 const navbarSlice = createSlice({
@@ -27,6 +28,10 @@ const navbarSlice = createSlice({
       const { sex } = action.payload
       state.workoutPlan = sex
     },
+    handleNavLinksWidth: (state, action) => {
+      const { width } = action.payload
+      state.navLinkWidth = width
+    },
   },
 })
 
@@ -35,6 +40,7 @@ export const {
   fitnessCalculator,
   handleSearchBar,
   handleWorkoutPlan,
+  handleNavLinksWidth,
 } = navbarSlice.actions
 
 export default navbarSlice.reducer

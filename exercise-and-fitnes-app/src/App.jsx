@@ -1,9 +1,4 @@
-import {
-  RouterProvider,
-  createBrowserRouter,
-  redirect,
-  useNavigate,
-} from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {
   About,
   Error,
@@ -18,19 +13,42 @@ import {
   Contact,
   Category,
   SubCategory,
+  Classes,
+  ClassType,
+  Orders,
 } from './pages'
-import { ErrorElement } from './components'
+import { ErrorElement, Loading, ProtectedRoute } from './components'
+
 // loaders
 import { loader as singleProductLoader } from './pages/SingleProduct'
 import { loader as productCategoryLoader } from './pages/Category'
-import { loader as productSubCategoryLoader } from './pages/SubCategory'
+import { loader as shopProductLoader } from './pages/Shop'
+import { loader as classesType } from './pages/ClassType'
+
+//actions
 import { action as reviewAction } from './components/ReviewTab'
 import { action as registerAction } from './pages/Register'
-import { action as LoginAction } from './pages/Login'
+import { action as loginAction } from './pages/Login'
+import { action as calculateCaloriesAction } from './components/CaloriesCalculator'
+import { action as checkoutAction } from './components/CheckoutForm'
+import { action as classTypeAction } from './pages/ClassType'
+import { action as contactAction } from './pages/Contact'
+//
 import { store } from './store'
-import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import { auth, database } from './firebase/firebase.utils'
 import { loginUser } from './features/user/userSlice'
-import { getDoc } from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useEffect } from 'react'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+})
 const router = createBrowserRouter([
   {
     path: '/',
@@ -41,6 +59,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
         errorElement: <ErrorElement />,
+        action: calculateCaloriesAction(store),
       },
       {
         path: 'about',
@@ -51,25 +70,20 @@ const router = createBrowserRouter([
         path: 'shop',
         element: <Shop />,
         errorElement: <ErrorElement />,
+        loader: shopProductLoader(queryClient),
       },
       {
         path: 'shop/products/:productId',
         element: <SingleProduct />,
         errorElement: <ErrorElement />,
-        loader: singleProductLoader,
+        loader: singleProductLoader(queryClient),
         action: reviewAction(store),
       },
       {
         path: 'shop/product-category/:category',
         element: <Category />,
         errorElement: <ErrorElement />,
-        loader: productCategoryLoader,
-      },
-      {
-        path: 'shop/product-category/:category/:subcategory',
-        element: <SubCategory />,
-        errorElement: <ErrorElement />,
-        loader: productSubCategoryLoader,
+        loader: productCategoryLoader(queryClient),
       },
       {
         path: 'cart',
@@ -78,12 +92,39 @@ const router = createBrowserRouter([
       },
       {
         path: 'checkout',
-        element: <Checkout />,
+        element: (
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        ),
         errorElement: <ErrorElement />,
+        action: checkoutAction(store),
       },
       {
         path: 'contact',
         element: <Contact />,
+        errorElement: <ErrorElement />,
+        action: contactAction,
+      },
+      {
+        path: 'class',
+        element: <Classes />,
+        errorElement: <ErrorElement />,
+      },
+      {
+        path: 'class/:type',
+        element: <ClassType />,
+        errorElement: <ErrorElement />,
+        loader: classesType,
+        action: classTypeAction,
+      },
+      {
+        path: 'orders',
+        element: (
+          <ProtectedRoute>
+            <Orders />
+          </ProtectedRoute>
+        ),
         errorElement: <ErrorElement />,
       },
     ],
@@ -98,21 +139,35 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />,
     errorElement: <Error />,
-    action: LoginAction,
+    action: loginAction,
   },
 ])
 const App = () => {
-  auth.onAuthStateChanged(async (userAuth) => {
-    if (userAuth) {
-      const userDocRef = await createUserProfileDocument(userAuth)
-      const snapshot = await getDoc(userDocRef)
-      const { displayName, email } = snapshot.data()
-      store.dispatch(
-        loginUser({ name: displayName, email, userId: snapshot.id })
-      )
+  const [user, loading, error] = useAuthState(auth)
+  useEffect(() => {
+    const fetchUser = async (user) => {
+      try {
+        if (user) {
+          const snapshot = await getDoc(doc(database, `users/${user.uid}`))
+          const { username, email } = snapshot.data()
+          store.dispatch(loginUser({ username, email, uid: user.uid }))
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
-  })
-
-  return <RouterProvider router={router} />
+    fetchUser(user)
+  }, [user])
+  if (loading) {
+    return <Loading />
+  }
+  if (error) {
+    return <div>{error.message}</div>
+  }
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  )
 }
 export default App

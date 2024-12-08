@@ -20,14 +20,16 @@ const subpages = {
 const SubPages = () => {
   const subLinkRef = useRef()
   const dispatch = useDispatch()
-  const page = useSelector((state) => {
-    return state.navbarState.page
+  const { page, navLinkWidth } = useSelector((state) => {
+    return state.navbarState
   })
   const pageOnHover = subpages[page]
+  const width = navLinkWidth + 'px'
   const hideSubLink = (event) => {
     const subLink = subLinkRef.current
     const { left, right, bottom } = subLink.getBoundingClientRect()
     const { clientX, clientY } = event
+
     if (clientX < left || clientX > right || clientY > bottom - 1) {
       dispatch(subPage({ page: null }))
       dispatch(fitnessCalculator({ subpage: [{}] }))
@@ -35,11 +37,11 @@ const SubPages = () => {
   }
   return (
     <section
-      className="absolute hidden lg:flex right-0  top-[90px] transition-transform duration-300 origin-top  text-xs text-accent/70 bg-base-100 z-40"
+      className="absolute hidden md:flex left-0  top-full transition-transform duration-300 origin-top  text-xs text-accent/70 bg-base-100 z-50"
       style={{
         transform: pageOnHover ? 'rotateX(0deg)' : 'rotateX(-90deg)',
-        right: page === 'about' ? '400px' : '0',
-        left: page === 'about' ? ' ' : '0',
+        left: page === 'about' ? `calc(100% - ${width} + 41px)` : '0',
+        right: page === 'about' ? null : '0',
       }}
       ref={subLinkRef}
       onMouseLeave={hideSubLink}

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const fitnessCalculators = [
+export const fitnessCalculators = [
   {
     text: 'Body Mass Index (BMI)',
     url: 'body-mass-index-bmi',
@@ -29,7 +29,7 @@ const FitnessCalculators = () => {
         return (
           <li key={index}>
             <Link
-              to={url}
+              /* to={url} */
               className="grid items-center h-[35px] pl-3 pr-0.5 border-t border-accent/10 hover:bg-accent/[0.02] hover:text-accent/80"
             >
               {text}

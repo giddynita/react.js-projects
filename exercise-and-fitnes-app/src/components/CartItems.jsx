@@ -5,14 +5,12 @@ import { editItem, removeItem } from '../features/cart/cartSlice'
 import { Link } from 'react-router-dom'
 
 const CartItems = ({ cartItem }) => {
-  const { productImage, productName, price, amount, cartID, productId } =
-    cartItem
+  const { image, productName, price, amount, cartID, productId } = cartItem
   const dispatch = useDispatch()
   const handleAmount = (e) => {
     dispatch(editItem({ cartID, amount: parseInt(e.target.value) }))
   }
   const remove = () => {
-    console.log('removed')
     dispatch(removeItem({ cartID, productName }))
   }
   return (
@@ -25,14 +23,17 @@ const CartItems = ({ cartItem }) => {
       </td>
       <td className="w-[10%] border hidden p-3 md:table-cell">
         <img
-          src={productImage}
-          alt={productImage}
+          src={image}
+          alt={image}
           className="w-10 h-10 mx-auto"
           loading="lazy"
         />
       </td>
       <td className="border p-3 text-accent/80 text-xs">
-        <Link to={`/shop/products/${productId}`} className="hover:text-primary">
+        <Link
+          to={`/shop/products/${productId}`}
+          className="hover:text-primary capitalize"
+        >
           {productName}
         </Link>
       </td>

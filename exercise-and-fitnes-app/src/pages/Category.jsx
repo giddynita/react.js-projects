@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Filters,
   Pagination,
@@ -8,47 +8,123 @@ import {
   SearchBar,
   InformationSection,
   ProductBrandSection,
-  Select,
   TopRatedProductSection,
-  SubCategories,
   Banner,
 } from '../components'
 import paymentIcon from '../assets/images/payment-icons.png'
 import { useLoaderData } from 'react-router-dom'
-import { productList } from '../data'
+import { createClient } from 'contentful'
+import { handlePriceFilter } from '../features/products/productsFiltersSlice'
+import ProductCategoriesSection from '../components/ProductCategoriesSection'
 
-export const loader = ({ params }) => {
-  const category = params.category
-  const selectedCategory = productList.filter(
-    (product) => product.category === category
-  )
-  return { selectedCategory, category }
+const findMaxPrice = (arr) => {
+  return arr.reduce((max, current) => {
+    return current.productPrice > max.productPrice ? current : max
+  })
 }
+const client = createClient({
+  space: 'dc28dkbw08sq',
+  environment: 'master',
+  accessToken: `${import.meta.env.VITE_API_KEY}`,
+})
+const queryData = {
+  queryKey: ['products'],
+  queryFn: () => client.getEntries({ content_type: 'exerciseFitnessProducts' }),
+}
+
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const category = params.category
+    const response = await queryClient.ensureQueryData(queryData)
+    const productsList = response.items.map((content) => {
+      const {
+        category,
+        productBrand,
+        productDesc,
+        productId,
+        productName,
+        productPrice,
+        productRatings,
+        sale,
+        subCategory,
+        topRated,
+        productImage,
+        discountPrice,
+      } = content.fields
+      const image = productImage?.fields?.file?.url
+      return {
+        category,
+        productBrand,
+        productDesc,
+        productId,
+        productName,
+        productPrice,
+        productRatings,
+        sale,
+        subCategory,
+        topRated,
+        image,
+        discountPrice,
+      }
+    })
+    const selectedCategory = productsList.filter(
+      (product) => product.subCategory === category
+    )
+    return { selectedCategory, category, productsList }
+  }
 
 const Category = () => {
   const {
     searchWord,
-    equipment,
-    nutrition,
+    price,
     colorType,
     brand,
     selectedPage,
     productsPerPage,
-    products,
+    sortBy,
   } = useSelector((state) => {
     return state.productState
   })
 
   const { selectedCategory, category } = useLoaderData()
-  const categoryPrice =
-    (category === 'equipment' && equipment) ||
-    (category === 'nutrition' && nutrition)
-  const searchAndPriceFiltered = selectedCategory
+  const maxProduct = findMaxPrice(selectedCategory)
+  const checkSelectedPrice = price || maxProduct.productPrice
+  const sortByLowToHighPrice = selectedCategory
+    .slice()
+    .sort((a, b) => (a.productPrice > b.productPrice ? 1 : -1))
+
+  const sortByHighToLowPrice = selectedCategory
+    .slice()
+    .sort((a, b) => (a.productPrice < b.productPrice ? 1 : -1))
+  const sortByZToA = selectedCategory
+    .slice()
+    .sort((a, b) => (a.productName < b.productName ? 1 : -1))
+  const sortByAToZ = selectedCategory
+    .slice()
+    .sort((a, b) => (a.productName > b.productName ? 1 : -1))
+  const sortByRating = selectedCategory
+    .slice()
+    .sort((a, b) => (a.productRatings < b.productRatings ? 1 : -1))
+  const sortedProducts =
+    sortBy === 'Sort by price: low to high'
+      ? sortByLowToHighPrice
+      : sortBy == 'Sort by price: high to low'
+      ? sortByHighToLowPrice
+      : sortBy == 'Sort by name: a - z'
+      ? sortByAToZ
+      : sortBy == 'Sort by name: z - a'
+      ? sortByZToA
+      : sortBy == 'Sort by average rating'
+      ? sortByRating
+      : selectedCategory
+
+  const searchAndPriceFiltered = sortedProducts
     .filter((product) => product.productName.includes(searchWord))
-    .filter((product) =>
-      product.sale
-        ? product.discountPrice <= categoryPrice
-        : product.productPrice <= categoryPrice
+    .filter(({ sale, discountPrice, productPrice }) =>
+      sale
+        ? discountPrice <= checkSelectedPrice
+        : productPrice <= checkSelectedPrice
     )
   const searchAndPriceFilteredWithColor = searchAndPriceFiltered.filter(
     (product) =>
@@ -63,10 +139,12 @@ const Category = () => {
     : searchAndPriceFilteredWithColor
 
   const paginatedAndFilteredProducts =
-    searchAndPriceFilteredWithColorAndBrand.slice(
-      selectedPage * productsPerPage,
-      (selectedPage + 1) * productsPerPage
-    )
+    searchAndPriceFilteredWithColorAndBrand.length <= productsPerPage
+      ? searchAndPriceFilteredWithColorAndBrand
+      : searchAndPriceFilteredWithColorAndBrand.slice(
+          selectedPage * productsPerPage,
+          (selectedPage + 1) * productsPerPage
+        )
 
   return (
     <>
@@ -100,12 +178,7 @@ const Category = () => {
               />
             </section>
             <section className="mb-6">
-              <Heading
-                text="product categories"
-                margin="mb-3"
-                size="text-[1rem]"
-              />
-              <SubCategories category={category} products={products} />
+              <ProductCategoriesSection activeCategory={category} />
             </section>
             <section className="mb-6">
               <Heading
@@ -115,7 +188,7 @@ const Category = () => {
               />
               <TopRatedProductSection total={3} />
             </section>
-            <section className="mb-6">
+            {/* <section className="mb-6">
               <Heading
                 text="filter by color"
                 margin="mb-3"
@@ -125,7 +198,7 @@ const Category = () => {
                 name="color"
                 list={['Any Color', 'Red', 'Blue', 'Black', 'White']}
               />
-            </section>
+            </section> */}
             <section className="mb-6">
               <Heading
                 text="filter by price"

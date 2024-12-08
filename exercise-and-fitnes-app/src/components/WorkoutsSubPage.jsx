@@ -8,7 +8,7 @@ import WorkoutPlanFemale from './WorkoutPlanFemale'
 import { handleWorkoutPlan } from '../features/navbar/navbarSlice'
 import Heading from './Heading'
 
-const workoutPlans = {
+export const workoutPlans = {
   heading: 'workout plans',
   column: [
     { text: 'power bodyBuilding', url: 'power-bodybuilding' },
@@ -20,7 +20,7 @@ const workoutPlans = {
     { text: 'start here your new year', url: 'start-here-your-new-year' },
   ],
 }
-const findYourWorkoutPlan = {
+export const findYourWorkoutPlan = {
   heading: 'find your workout plan',
   column: [
     {
@@ -33,7 +33,7 @@ const findYourWorkoutPlan = {
     },
   ],
 }
-const singleWorkouts = {
+export const singleWorkouts = {
   heading: 'single workouts',
   column: [
     { text: 'blast your traps', url: 'blast-your-traps' },
@@ -66,9 +66,9 @@ const WorkoutsSubPage = () => {
               <li key={index}>
                 <Link
                   to={url}
-                  className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80"
+                  className=" flex items-start py-1.5 hover:bg-accent/[0.02] hover:text-accent/80"
                 >
-                  <MdArrowRight className="text-[1rem]" />
+                  <MdArrowRight className="text-[1rem] shrink-0" />
                   <span>{text}</span>
                 </Link>
               </li>
@@ -89,7 +89,7 @@ const WorkoutsSubPage = () => {
             {findYourWorkoutPlan.column.map(({ image, type }, index) => {
               return (
                 <>
-                  <li key={index} className="relative">
+                  <li key={index + 1} className="relative">
                     <img
                       src={image}
                       alt={type}
@@ -126,12 +126,12 @@ const WorkoutsSubPage = () => {
         <ul>
           {singleWorkouts.column.map(({ text, url }, index) => {
             return (
-              <li key={index}>
+              <li key={index + 2}>
                 <Link
                   to={url}
-                  className=" flex items-center py-1.5 hover:bg-accent/[0.02] hover:text-accent/80"
+                  className=" flex items-start py-1.5 hover:bg-accent/[0.02] hover:text-accent/80"
                 >
-                  <MdArrowRight className="text-[1rem]" />
+                  <MdArrowRight className="text-[1rem] shrink-0" />
                   <span>{text}</span>
                 </Link>
               </li>

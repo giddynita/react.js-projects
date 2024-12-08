@@ -1,9 +1,11 @@
+import { useLoaderData } from 'react-router-dom'
 import Benefits from './Benefits'
 import Heading from './Heading'
-import ProductSubCategories from './ProductSubCategories'
+import SingleProductCategories from './SingleProductCategories'
 import TopRatedProductSection from './TopRatedProductSection'
 
-const RelatedProductDetails = () => {
+const RelatedProductDetails = ({ singleProduct }) => {
+  const { productsList } = useLoaderData()
   return (
     <div className="h-max">
       <section className="mb-8">
@@ -11,11 +13,10 @@ const RelatedProductDetails = () => {
       </section>
       <section className="mb-5">
         <Heading text="top rated products" margin="mb-3" />
-        <TopRatedProductSection total={4} />
+        <TopRatedProductSection total={4} products={productsList} />
       </section>
       <section>
-        <Heading text="product categories" margin="mb-3" />
-        <ProductSubCategories />
+        <SingleProductCategories singleProduct={singleProduct} />
       </section>
     </div>
   )

@@ -4,7 +4,7 @@ import FitnessCalculators from './FitnessCalculators'
 import { useDispatch, useSelector } from 'react-redux'
 import { fitnessCalculator } from '../features/navbar/navbarSlice'
 
-const subpages = [
+export const aboutSubpages = [
   {
     text: 'trainer',
     url: 'trainer',
@@ -50,11 +50,11 @@ const AboutSubLinks = () => {
   return (
     <div className="relative">
       <ul className=" borderTop w-40 capitalize">
-        {subpages.map(({ text, url }, index) => {
+        {aboutSubpages.map(({ text, url }, index) => {
           return (
             <li key={index}>
               <Link
-                to={url}
+                /* to={url} */
                 className=" flex justify-between items-center pl-3 pr-0.5 h-[35px] border-b border-accent/10 hover:bg-accent/[0.02] hover:text-accent/80"
                 onMouseOver={() => {
                   showFitnessCalculators(text)

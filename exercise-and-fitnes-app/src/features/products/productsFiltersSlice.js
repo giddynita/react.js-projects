@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { productList } from '../../data'
 
-const findMaxPrice = (arr) => {
+/* const findMaxPrice = (arr) => {
   return arr.reduce((max, current) => {
     return current.productPrice > max.productPrice ? current : max
   })
@@ -14,20 +14,19 @@ const nutritions = productList.filter(
 )
 const maxProduct = findMaxPrice(productList)
 const maxEquipment = findMaxPrice(equipments)
-const maxNutrition = findMaxPrice(nutritions)
+const maxNutrition = findMaxPrice(nutritions) */
 
 const defaultState = {
-  products: productList,
-  productsPerPage: 9,
+  products: [],
+  productsPerPage: 3,
   colorType: '',
   brand: '',
-  price: '' || maxProduct.productPrice,
+  price: '',
   searchWord: '',
   selectedPage: 0,
   sortBy: '',
   topRated: '',
-  equipment: '' || maxEquipment.productPrice,
-  nutrition: '' || maxNutrition.productPrice,
+  category: '',
 }
 const productsFiltersSlice = createSlice({
   name: 'productFilter',
@@ -66,33 +65,39 @@ const productsFiltersSlice = createSlice({
       state.selectedPage = selectPage
     },
     handleSorting: (state, action) => {
-      const { sortBy } = action.payload
-      const sortByLowToHighPrice = state.products
+      const { sortBy, products } = action.payload
+      state.sortBy = sortBy
+      /* const sortByLowToHighPrice = products
         .slice()
         .sort((a, b) => (a.productPrice > b.productPrice ? 1 : -1))
-      const sortByHighToLowPrice = state.products
+
+      const sortByHighToLowPrice = products
         .slice()
         .sort((a, b) => (a.productPrice < b.productPrice ? 1 : -1))
-      const sortByZToA = state.products
+      const sortByZToA = products
         .slice()
         .sort((a, b) => (a.productName < b.productName ? 1 : -1))
-      const sortByAToZ = state.products
+      const sortByAToZ = products
         .slice()
         .sort((a, b) => (a.productName > b.productName ? 1 : -1))
-      const sortByRating = state.products
+      const sortByRating = products
         .slice()
-        .sort((a, b) => (a.productRatings < b.productRatings ? 1 : -1))
-      sortBy === 'Sort by price: low to high'
+        .sort((a, b) => (a.productRatings < b.productRatings ? 1 : -1)) */
+      /* sortBy === 'Sort by price: low to high'
         ? (state.products = sortByLowToHighPrice)
-        : sortBy === 'Sort by price: high to low'
+        : sortBy == 'Sort by price: high to low'
         ? (state.products = sortByHighToLowPrice)
-        : sortBy === 'Sort by name: a - z'
+        : sortBy == 'Sort by name: a - z'
         ? (state.products = sortByAToZ)
-        : sortBy === 'Sort by name: z - a'
+        : sortBy == 'Sort by name: z - a'
         ? (state.products = sortByZToA)
-        : sortBy === 'Sort by average rating'
+        : sortBy == 'Sort by average rating'
         ? (state.products = sortByRating)
-        : (state.products = productList)
+        : (state.products = products) */
+    },
+    handleProductFetching: (state, action) => {
+      const { products } = action.payload
+      state.products = products
     },
   },
 })
@@ -107,6 +112,7 @@ export const {
   handleSearch,
   handlePagination,
   handleSorting,
+  handleProductFetching,
 } = productsFiltersSlice.actions
 
 export default productsFiltersSlice.reducer
