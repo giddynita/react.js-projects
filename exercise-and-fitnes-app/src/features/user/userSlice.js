@@ -7,9 +7,9 @@ import { toast } from 'react-toastify'
   dracula: 'dracula',
 }
  */
-/* const getUserFromLocalStorage = () => {
+const getUserFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('user')) || null
-} */
+}
 
 /* const getThemeFromLocalStorage = () => {
   const theme = localStorage.getItem('theme' || themes.winter)
@@ -18,7 +18,7 @@ import { toast } from 'react-toastify'
 } */
 
 const initialState = {
-  user: null,
+  user: getUserFromLocalStorage(),
   /* theme: getThemeFromLocalStorage(), */
 }
 const userSlice = createSlice({
@@ -28,12 +28,12 @@ const userSlice = createSlice({
     loginUser: (state, action) => {
       const { username, email, uid } = action.payload
       state.user = { username, email, uid }
-      /* localStorage.setItem('user', JSON.stringify(user)) */
+      localStorage.setItem('user', JSON.stringify(state.user))
     },
     logoutUser: (state) => {
       state.user = null
-      /* localStorage.removeItem('user')
-      toast.success('Signed out successfully') */
+      localStorage.removeItem('user')
+      /* toast.success('Signed out successfully') */
     },
     /* toggleTheme: (state) => {
       const { dracula, winter } = themes
