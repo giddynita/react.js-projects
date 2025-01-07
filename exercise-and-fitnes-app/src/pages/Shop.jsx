@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import {
   AdvancedFilter,
+  Button,
   Carousel,
   Filters,
   Pagination,
@@ -58,6 +59,7 @@ const findMaxPrice = (arr) => {
     return current.productPrice > max.productPrice ? current : max
   })
 }
+
 const Shop = () => {
   const { productsList } = useLoaderData()
   const maxProduct = findMaxPrice(productsList)
@@ -135,9 +137,25 @@ const Shop = () => {
 
   return (
     <>
-      <Carousel />
+      <section className="w-full bg-black bg-[url('./assets/images/contacts-slider-bg.png')] bg-center  py-6 sm:h-[62vw] md:h-[49vw] lg:h-[500px] border-y-[4px] border-y-primary relative text-gray-500 flex flex-col items-center justify-center text-center gap-10">
+        <div className="uppercase text-white/80">
+          <h3 className="text-4xl md:text-5xl font-extrabold word-spacing mb-1">
+            gear up for fitness
+          </h3>
+          <p className="sm:text-md md:text-lg font-semibold">
+            top quality gym gear for every fitness goal
+          </p>
+        </div>
+        <a href="#products">
+          <Button
+            type="button"
+            text="shop now"
+            customStyles="text-xs md:text-sm lg:text-md px-2 sm:w-40 md:w-44 lg:w-48 py-2.5 rounded font-semibold"
+          />
+        </a>
+      </section>
       <div className="lg:grid lg:grid-cols-7 w-[90%] mx-auto max-w-screen-lg gap-x-14">
-        <div className="py-10 lg:col-span-5">
+        <div className="py-10 lg:col-span-5" id="products">
           <Filters />
           <Products
             paginatedAndFilteredProducts={paginatedAndFilteredProducts}
@@ -150,7 +168,8 @@ const Shop = () => {
             />
           )}
         </div>
-        æ<div className="hidden lg:flex lg:col-span-2 pt-10">
+
+        <div className="hidden lg:flex lg:col-span-2 pt-10">
           <AdvancedFilter />
         </div>
       </div>
