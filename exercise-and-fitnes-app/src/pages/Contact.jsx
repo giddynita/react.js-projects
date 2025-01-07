@@ -25,7 +25,6 @@ const Contact = () => {
       toast.error('Kindly fill the required field(s)')
     }
     toast.success('Message sent successfully. We will get back to you shortly!')
-    console.log(contactInfo)
     form.reset()
   }
   return (

@@ -1,6 +1,6 @@
 import NavLinks from './NavLinks'
 import { LuMenu } from 'react-icons/lu'
-import { FaSearch } from 'react-icons/fa'
+/* import { FaSearch } from 'react-icons/fa' */
 import { useDispatch, useSelector } from 'react-redux'
 import SearchBar from './SearchBar'
 import { handleSearchBar } from '../features/navbar/navbarSlice'

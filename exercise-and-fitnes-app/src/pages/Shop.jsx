@@ -150,7 +150,7 @@ const Shop = () => {
             />
           )}
         </div>
-        <div className="hidden lg:flex lg:col-span-2 pt-10">
+        æ<div className="hidden lg:flex lg:col-span-2 pt-10">
           <AdvancedFilter />
         </div>
       </div>

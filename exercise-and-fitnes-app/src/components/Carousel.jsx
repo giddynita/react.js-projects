@@ -27,7 +27,7 @@ const Carousel = () => {
         { text: 'wellness tips', icon: <IoShieldCheckmarkSharp /> },
         { text: 'community support', icon: <IoShieldCheckmarkSharp /> },
       ],
-      /* image: img1, */
+      image: img1,
     },
     {
       background: carousel2,
@@ -40,7 +40,7 @@ const Carousel = () => {
         { text: 'targeted diets', icon: <IoShieldCheckmarkSharp /> },
         { text: 'weight management', icon: <IoShieldCheckmarkSharp /> },
       ],
-      /*  image: img2, */
+      image: img2,
     },
     {
       background: carousel3,
@@ -53,7 +53,7 @@ const Carousel = () => {
         { text: 'adaptive plans', icon: <IoShieldCheckmarkSharp /> },
         { text: 'flexible schedules', icon: <IoShieldCheckmarkSharp /> },
       ],
-      /* image: img3, */
+      image: img3,
     },
     {
       background: carousel4,
@@ -66,7 +66,7 @@ const Carousel = () => {
         { text: 'goal tracking', icon: <IoShieldCheckmarkSharp /> },
         { text: 'personalized feedback', icon: <IoShieldCheckmarkSharp /> },
       ],
-      /* image: img4, */
+      image: img4,
     },
   ]
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -209,7 +209,7 @@ const Carousel = () => {
                 </div>
               </div>
               <div
-                className={` w-[60%] h-full grid items-end carousel-image ${
+                className={` w-[60%]  grid items-end carousel-image bg-gray-200 rounded-full ${
                   index === currentSlide && reverse == 'flex-row'
                     ? 'active'
                     : ''

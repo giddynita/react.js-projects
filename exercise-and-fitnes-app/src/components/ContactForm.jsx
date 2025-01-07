@@ -5,6 +5,7 @@ import SubmitButton from './SubmitButton'
 import { FaPencilAlt } from 'react-icons/fa'
 import { RiAccountBoxFill } from 'react-icons/ri'
 import FormTextArea from './FormTextArea'
+import { toast } from 'react-toastify'
 
 export const action = async () => {
   return null
@@ -12,8 +13,20 @@ export const action = async () => {
 
 const ContactForm = () => {
   const navigation = useNavigation()
+  const handleSubmit = async (e) => {
+    const form = e.target
+    const formData = new FormData(form)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const message = formData.get('message')
+    if (!name || !email || !message) {
+      toast.error('Kindly fill the required field(s)')
+    }
+    toast.success('Message sent successfully. We will get back to you shortly!')
+    form.reset()
+  }
   return (
-    <Form method="POST">
+    <Form method="POST" onSubmit={handleSubmit}>
       <div className="flex justify-between gap-x-2">
         <div className="w-1/2 relative ">
           <FormInput

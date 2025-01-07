@@ -33,6 +33,8 @@ import { action as calculateCaloriesAction } from './components/CaloriesCalculat
 import { action as checkoutAction } from './components/CheckoutForm'
 import { action as classTypeAction } from './pages/ClassType'
 import { action as contactAction } from './pages/Contact'
+import { action as contactFormAction } from './components/ContactForm'
+
 //
 import { store } from './store'
 import { auth, database } from './firebase/firebase.utils'
@@ -128,6 +130,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorElement />,
       },
     ],
+    action: contactFormAction,
   },
   {
     path: '/register',
@@ -142,6 +145,7 @@ const router = createBrowserRouter([
     action: loginAction,
   },
 ])
+
 const App = () => {
   const [user, loading, error] = useAuthState(auth)
   useEffect(() => {
