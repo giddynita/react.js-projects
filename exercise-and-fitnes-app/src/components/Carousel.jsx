@@ -27,7 +27,7 @@ const Carousel = () => {
         { text: 'wellness tips', icon: <IoShieldCheckmarkSharp /> },
         { text: 'community support', icon: <IoShieldCheckmarkSharp /> },
       ],
-      image: img1,
+      /* image: img1, */
     },
     {
       background: carousel2,
@@ -40,7 +40,7 @@ const Carousel = () => {
         { text: 'targeted diets', icon: <IoShieldCheckmarkSharp /> },
         { text: 'weight management', icon: <IoShieldCheckmarkSharp /> },
       ],
-      image: img2,
+      /*  image: img2, */
     },
     {
       background: carousel3,
@@ -53,7 +53,7 @@ const Carousel = () => {
         { text: 'adaptive plans', icon: <IoShieldCheckmarkSharp /> },
         { text: 'flexible schedules', icon: <IoShieldCheckmarkSharp /> },
       ],
-      image: img3,
+      /* image: img3, */
     },
     {
       background: carousel4,
@@ -66,7 +66,7 @@ const Carousel = () => {
         { text: 'goal tracking', icon: <IoShieldCheckmarkSharp /> },
         { text: 'personalized feedback', icon: <IoShieldCheckmarkSharp /> },
       ],
-      image: img4,
+      /* image: img4, */
     },
   ]
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -135,7 +135,7 @@ const Carousel = () => {
                 className={`w-full h-full px-4 flex flex-col justify-center `}
               >
                 <p
-                  className={`italic carousel-content-pretitle text-md sm:text-xl md:text-2xl ${
+                  className={`italic carousel-content-pretitle text-lg  md:text-2xl ${
                     index === currentSlide ? 'active' : ''
                   } ${
                     index !== currentSlide && reverse === 'flex-row-reverse'
@@ -151,7 +151,7 @@ const Carousel = () => {
                 </p>
                 <div className="">
                   <h1
-                    className={` font-bold text-md sm:text-4xl md:text-[2.5rem] lg:text-6xl uppercase carousel-content-title ${
+                    className={` font-bold text-2xl md:text-[2.5rem] lg:text-6xl uppercase carousel-content-title ${
                       index === currentSlide ? 'active' : ''
                     } ${
                       index !== currentSlide && reverse === 'flex-row-reverse'
@@ -167,7 +167,7 @@ const Carousel = () => {
                     {title}
                   </h1>
                   <p
-                    className={`carousel-content-subtitle uppercase text-[0.5rem] sm:text-xs md:text-sm pl-0.5 ${
+                    className={`carousel-content-subtitle uppercase text-[.5rem] sm:text-xs md:text-sm pl-0.5 ${
                       index === currentSlide ? 'active' : ''
                     } ${
                       index !== currentSlide && reverse === 'flex-row-reverse'
@@ -191,7 +191,7 @@ const Carousel = () => {
                       return (
                         <li
                           key={index}
-                          className="flex flex-wrap py-3 items-center justify-left border-r border-dotted last:border-0  gap-x-1 "
+                          className="flex flex-wrap py-3 items-center justify-left border-r border-dotted last:border-0  gap-x-1"
                           style={{
                             animation,
                           }}

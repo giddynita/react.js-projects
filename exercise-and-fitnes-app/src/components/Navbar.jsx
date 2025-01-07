@@ -23,7 +23,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className=" flex h-[90px] justify-between items-center relative ">
+    <nav className=" flex h-[90px] justify-between items-center relative">
       {/* LOGO */}
       <h2 className="uppercase text-2xl tracking-wider text-gray-700 font-bold">
         forge<span className="bg-green-500 text-white px-1">fit</span>
@@ -32,7 +32,7 @@ const Navbar = () => {
         {/* NAVLINKS */}
         <NavLinks />
         {/* SEARCH ICON */}
-        <div className="relative search">
+        {/*  <div className="relative search">
           <FaSearch
             className="hover:text-primary cursor-pointer text-xs search"
             onClick={handleSearchBarClick}
@@ -60,7 +60,7 @@ const Navbar = () => {
               transition: 'all ease 0.7s',
             }}
           ></span>
-        </div>
+        </div> */}
       </div>
       {/* MENU BUTTON */}
       <button

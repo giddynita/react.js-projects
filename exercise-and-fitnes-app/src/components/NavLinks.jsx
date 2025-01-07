@@ -72,7 +72,9 @@ const NavLinks = () => {
           <li key={page}>
             <NavLink
               to={url}
-              className={`grid items-center py-8 px-2 items-stretch hover:text-primary ${handleCart}`}
+              className={`grid items-center py-8   items-stretch hover:text-primary ${
+                page == 'contact' ? 'pl-2' : 'px-2'
+              }  ${handleCart}`}
               onMouseMove={() => {
                 showSubPages(page)
               }}

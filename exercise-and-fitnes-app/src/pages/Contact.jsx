@@ -7,30 +7,27 @@ import FormTextArea from '../components/FormTextArea'
 import { FaBriefcase, FaPhone } from 'react-icons/fa6'
 import { toast } from 'react-toastify'
 
-export const action = async ({ request }) => {
-  const formData = await request.formData()
-  const data = Object.fromEntries(formData)
-  const { name, email, brief, message } = data
-  if (!name || !email || !message) {
-    toast.error('Kindly fill the required field(s)')
-    return null
-  }
-  const handleReload = () => {
-    return window.location.reload()
-  }
-  try {
-    toast.success('Message sent successfully. We will get back to you shortly!')
-    return null
-  } catch (error) {
-    const errorCode = error.code
-    const errorMessage = error.message
-    console.log(errorCode, errorMessage)
-    return null
-  }
+export const action = async () => {
+  return null
 }
 
 const Contact = () => {
   const navigation = useNavigation()
+  const handleSubmit = async (e) => {
+    const form = e.target
+    const formData = new FormData(form)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const brief = formData.get('brief')
+    const message = formData.get('message')
+    const contactInfo = { name, email, brief, message }
+    if (!name || !email || !message) {
+      toast.error('Kindly fill the required field(s)')
+    }
+    toast.success('Message sent successfully. We will get back to you shortly!')
+    console.log(contactInfo)
+    form.reset()
+  }
   return (
     <>
       <section className="w-full bg-black bg-[url('./assets/images/contacts-slider-bg.png')] bg-center  py-6 sm:h-[62vw] md:h-[49vw] lg:h-[500px] border-y-[4px] border-y-primary relative text-gray-500 flex flex-col items-center justify-center text-center gap-10">
@@ -103,7 +100,11 @@ const Contact = () => {
           Have a question or need assistance? <br />
           Send us a message, and we'll get back to you as soon as possible.
         </p>
-        <Form method="POST" className="w-[70%] mx-auto py-8">
+        <Form
+          method="POST"
+          onSubmit={handleSubmit}
+          className="w-[70%] mx-auto py-8"
+        >
           <div className="flex flex-col sm:flex-row gap-y-4 gap-x-2">
             <div className="relative w-full">
               <FormInput

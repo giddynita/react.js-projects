@@ -83,7 +83,12 @@ const Timetables = () => {
         (timeUntilOpen % (1000 * 60 * 60)) / (1000 * 60)
       )
       const seconds = Math.floor((timeUntilOpen % (1000 * 60)) / 1000)
-      setTimeRemaining(`Opens in ${hours}:${minutes}:${seconds} `)
+      const timingHours = hours < 10 ? `0${hours}` : hours
+      const timingMinutes = minutes < 10 ? `0${minutes}` : minutes
+      const timingSeconds = seconds < 10 ? `0${seconds}` : seconds
+      setTimeRemaining(
+        `Opens in ${timingHours}:${timingMinutes}:${timingSeconds} `
+      )
     } else if (now >= openingTime && now < closingTime) {
       const timeUntilClose = closingTime - now
       const hours = Math.floor(timeUntilClose / (1000 * 60 * 60))
@@ -91,7 +96,12 @@ const Timetables = () => {
         (timeUntilClose % (1000 * 60 * 60)) / (1000 * 60)
       )
       const seconds = Math.floor((timeUntilClose % (1000 * 60)) / 1000)
-      setTimeRemaining(`Closes in ${hours}:${minutes}:${seconds}`)
+      const timingHours = hours < 10 ? `0${hours}` : hours
+      const timingMinutes = minutes < 10 ? `0${minutes}` : minutes
+      const timingSeconds = seconds < 10 ? `0${seconds}` : seconds
+      setTimeRemaining(
+        `Closes in ${timingHours}:${timingMinutes}:${timingSeconds} `
+      )
     } else {
       const nextDay = (today + 1) % 7
       const nextDaySchedule = storeSchedule[nextDay]

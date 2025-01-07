@@ -49,11 +49,11 @@ const ProductDetails = ({ singleProduct }) => {
       : toast.success(`${capitalize(productName)} added to your cart`)
   }
   return (
-    <div className="grid sm:grid-cols-2 gap-5 sm:flex-row">
-      <figure className="bg-gray-100/50 h-max flex ">
+    <div className="grid gap-5 sm:grid-cols-3">
+      <figure>
         <img src={image} alt={productName} className="mx-auto" loading="lazy" />
       </figure>
-      <div>
+      <div className="col-span-2">
         <Heading text={productName} size="text-2xl" margin="mb-1" />
         <div className="flex gap-1">
           <Rating productRatings={productRatings} />

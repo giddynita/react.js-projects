@@ -32,7 +32,7 @@ export const action = async () => {
 
 export const loader = ({ params }) => {
   const type = params.type
-  const classType = classes.find((classType) => classType.url === type)
+  const classType = classes.find((classType) => classType.url == type)
   return { classType }
 }
 

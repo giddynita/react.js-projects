@@ -6,6 +6,10 @@ import { FaPencilAlt } from 'react-icons/fa'
 import { RiAccountBoxFill } from 'react-icons/ri'
 import FormTextArea from './FormTextArea'
 
+export const action = async () => {
+  return null
+}
+
 const ContactForm = () => {
   const navigation = useNavigation()
   return (

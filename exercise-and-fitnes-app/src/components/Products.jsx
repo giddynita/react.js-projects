@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import Button from './Button'
 const Products = ({ paginatedAndFilteredProducts }) => {
   return (
-    <div className="py-8 grid sm:grid-cols-3 md:grid-cols-4 gap-8">
+    <div className="py-8 grid sm:grid-cols-3 md:grid-cols-3 gap-8">
       {paginatedAndFilteredProducts.map(
         (
           {
@@ -39,7 +39,7 @@ const Products = ({ paginatedAndFilteredProducts }) => {
           return (
             <div
               key={index}
-              className="flex flex-col rounded-md relative shadow hover:shadow-md bg-gray-100/50 min-h-16 overflow-hidden "
+              className="flex flex-col rounded-md relative shadow hover:shadow-md overflow-hidden h-[17.5rem]"
             >
               <div className="p-4 bg-white">
                 <Link to={`/shop/products/${productId}`}>

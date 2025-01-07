@@ -5,7 +5,8 @@ import {
   ProductDetails,
   RelatedProductDetails,
 } from '../components'
-import { useLoaderData } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
+import { MdArrowBackIos } from 'react-icons/md'
 
 const client = createClient({
   space: 'dc28dkbw08sq',
@@ -69,7 +70,16 @@ const SingleProduct = () => {
         subtitle="product details"
         backgroundImage="bg-[url('./assets/images/shop_product_details.JPG')]"
       />
-      <section className="width my-10 ">
+      <div className="width mt-5">
+        <Link
+          to="/shop"
+          className="flex items-center hover:text-gray-800 text-gray-500 w-max font-semibold cursor-pointer"
+        >
+          <MdArrowBackIos className="text-lg" />
+          <span className="uppercase text-xs pt-0.5">back</span>
+        </Link>
+      </div>
+      <section className="width pb-10 pt-5 ">
         <div className="lg:grid lg:grid-cols-7 gap-x-8">
           <div className="lg:col-span-5 flex flex-col gap-10">
             <ProductDetails singleProduct={singleProduct} />

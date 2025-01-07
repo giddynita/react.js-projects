@@ -188,14 +188,14 @@ const SideMenu = () => {
           )
         })}
       </ul>
-      <div className="bg-red-100">
+      {/* <div className="bg-red-100">
         <SearchBar
           width="w-full"
           borderRadius="rounded"
           placeholder="Search the site"
           hideButton
         />
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -2,22 +2,24 @@ import { RiErrorWarningLine } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { TiTimes } from 'react-icons/ti'
-import { database } from '../firebase/firebase.utils'
+import { auth, database } from '../firebase/firebase.utils'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { Loading } from '../components'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const Orders = () => {
   const [orders, setOrders] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [dataLoading, setDataLoading] = useState(true)
   const [error, setError] = useState(null)
-  const { uid } = useSelector((state) => {
+  /*  const { uid } = useSelector((state) => {
     return state.userState.user
-  })
+  }) */
+  const [user, loading] = useAuthState(auth)
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const ordersRef = collection(database, `orders/${uid}/orders`)
+      const ordersRef = collection(database, `orders/${user?.uid}/orders`)
       try {
         const ordersQuery = query(ordersRef, orderBy('createdAt', 'desc'))
         const querySnapshot = await getDocs(ordersQuery)
@@ -26,15 +28,15 @@ const Orders = () => {
           fetchedOrders.push({ id: doc.id, ...doc.data() })
         })
         setOrders(fetchedOrders)
-        setLoading(false)
+        setDataLoading(false)
       } catch (error) {
         setError('Failed to load orders')
       }
     }
     fetchOrders()
-  }, [uid])
+  }, [user?.uid])
 
-  if (loading) {
+  if (loading || dataLoading) {
     return <Loading />
   }
   if (error) {
@@ -88,6 +90,7 @@ const Orders = () => {
               ({ id, cartItems, createdAt, orderTotal, status }, index) => {
                 const statusUpdate =
                   status == 'pending' ? 'bg-yellow-300' : 'bg-green-300'
+
                 return (
                   <tr key={index}>
                     <td className="border p-3 text-accent/80 align-top">
@@ -117,7 +120,7 @@ const Orders = () => {
                     </td>
                     <td className="border text-gray-800 p-3 align-top mx-auto">
                       <p
-                        className={`w-max bg-yellow-300 rounded py-0.5 px-2 ${statusUpdate}`}
+                        className={`w-max rounded py-0.5 px-2 ${statusUpdate}`}
                       >
                         {status}
                       </p>
